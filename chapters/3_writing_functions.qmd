@@ -686,7 +686,7 @@ Use `ceiling()` to round all values ending in something other than .0 up to the 
 
 ```
 
-### Calcualte mean by group
+### Calculate mean by group
 
 What additional arguments might this benefit from to avoid it breaking under common use cases?
 
