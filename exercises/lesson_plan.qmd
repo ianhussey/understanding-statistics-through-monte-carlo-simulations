@@ -1,0 +1,203 @@
+# Lesson plan
+
+If delivered as a semester-long course, we suggest the following lesson plan. 
+
+## Week 1
+
+Before class
+
+- None
+
+In class
+
+- Slides in [keynote](../slides/week1/simulation_week_1.key), [powerpoint](../slides/week1/simulation_week_1.pptx), or [pdf](../slides/week1/simulation_week_1.pdf).
+
+After class
+
+- [Chapter 1: Required skills](../chapters/1_required_skills.qmd) and its exercises.
+- [Chapter 2: Foundation concepts](../chapters/2_foundation_concepts.qmd).
+
+## Week 2
+
+Before class
+
+- None
+
+In class
+
+- [Chapter 3: Writing functions](../chapters/3_writing_functions.qmd).
+
+After class
+
+- Chapter 3's exercises (linked in chapter).
+
+## Week 3
+
+Before class
+
+- XX
+
+In class
+
+- [Chapter 4: Data Generating Process functions](../chapters/4_data_generating_process_functions.qmd).
+
+After class
+
+- XX
+
+## Week 4
+
+Before class
+
+- XX
+
+In class
+
+- [Chapter 5: Analysis functions](../chapters/5_analysis_functions.qmd).
+
+After class
+
+- XX
+
+## Week 5
+
+Before class
+
+- XX
+
+In class
+
+- [Chapter 6: Creating simulation experiments](../chapters/6_creating_simulation_experiments.qmd). 
+- [Chapter 7: Mapping functions](../chapters/7_mapping.qmd). 
+
+After class
+
+- XX
+
+## Week 6
+
+Before class
+
+- XX
+
+In class
+
+- [Chapter 8: Summarizing results](../chapters/8_summarizing_results.qmd).
+- [Chapter 10: Summarizing results](../chapters/10_simulation_template.qmd).
+
+After class
+
+- XX
+
+## Week 7
+
+Before class
+
+- XX
+
+In class
+
+- XX
+
+After class
+
+- XX
+
+## Week 8
+
+Before class
+
+- XX
+
+In class
+
+- XX
+
+After class
+
+- XX
+
+## Week 9
+
+Before class
+
+- XX
+
+In class
+
+- XX
+
+After class
+
+- XX
+
+## Week 10
+
+Before class
+
+- XX
+
+In class
+
+- XX
+
+After class
+
+- XX
+
+## Week 11
+
+Before class
+
+- XX
+
+In class
+
+- XX
+
+After class
+
+- XX
+
+## Week 12
+
+Before class
+
+- XX
+
+In class
+
+- XX
+
+After class
+
+- XX
+
+## Week 13
+
+Before class
+
+- XX
+
+In class
+
+- XX
+
+After class
+
+- XX
+
+## Week 14
+
+Before class
+
+- XX
+
+In class
+
+- XX
+
+After class
+
+- XX
+
