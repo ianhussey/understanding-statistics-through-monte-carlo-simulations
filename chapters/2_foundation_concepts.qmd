@@ -1,7 +1,10 @@
 # Foundation concepts
 
 ## TODO
+
 - add content on positive and negative controls
+- integrate some repetitive content below
+- integrate information from slides, or the slides themselves
 
 ```{r}
 #| include: false
