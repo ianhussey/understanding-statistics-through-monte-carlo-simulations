@@ -79,7 +79,6 @@ You can use the `dat_depression_rct` tibble that was created above.
 
 
 
-
 ```
 
 ### Tidy messy age data
@@ -119,6 +118,22 @@ You can use the `dat_depression_rct` tibble that was created above.
 
 
 
+#
+  
+data <- dat_depression_rct
+
+
+calc_summary <- function(data, grouping, variable){
+  output <- data %>%
+    group_by({{ grouping }}) %>%
+    summarize(mean = mean({{ variable }}),
+              sd = sd({{ variable }}),
+              n = n())
+  return(output)
+}
+
+
+calc_summary(dat_depression_rct, group, score)
 
 ```
 
@@ -136,91 +151,4 @@ Pivot the result to wider format before mutating the difference in means.
 
 ```
 
-## Generating data
-
-### Generate a random number between 0 and 9 using `runif()`
-
-```{r}
-
-
-
-
-
-```
-
-### Generate two random numbers between 0 and 9, return only the larger one
-
-```{r}
-
-
-
-
-
-```
-
-### Sample data from a normal distribution and return a tibble  
-
-Use `rnorm()`
-
-```{r}
-
-
-
-
-
-```
-
-### Sample data from a normal distribution, round to the nearest whole number, and return a tibble  
-
-```{r}
-
-
-
-
-
-```
-
-### Sample data from a normal distribution, calculate its average, and return a tibble 
-
-```{r}
-
-
-
-
-
-```
-
-### Calculate the probabilty of n number of 'heads' coin flips in a row
-
-Use `rbinom()`.
-
-```{r}
-
-
-
-
-
-```
-
-### Sample data from two normal disributions, return a tibble with two columns called intervention and control
-
-```{r}
-
-
-
-
-
-```
-
-### Sample data from two normal disributions, return a tibble in long format with a 'score' and 'condition' column
-
-Use `bind_rows()`.
-
-```{r}
-
-
-
-
-
-```
 
