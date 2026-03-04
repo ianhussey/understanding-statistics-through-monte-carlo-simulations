@@ -32,6 +32,7 @@ library(dplyr)
 library(tidyr)
 library(tibble)
 library(roundwork)
+library(ggplot2)
 
 # NHANES dataset from the US Center for Disease Control, US adults 2008-2012
 library(NHANES)
@@ -950,5 +951,11 @@ When you write your own `generate_data()` functions, aim for these defaults:
 - A DGP function should take explicit inputs and return one tidy dataset.
 - Useful building blocks include `rnorm()` (continuous), `rbinom()` (binary), and multivariate normal draws for correlated variables (`mvrnorm()`, `rnorm_multi()`).
 
+
+## TODO
+
+- move the set seed bit to a "predictable unpredictability" section that is left to a reading.
+- add the "is this data normal?" exercise to this lesson or as a recap; remind people about the difference between sample and population, and that simulated data gives you access to the ground truth.
+- add the counterfactual to the fit of the normal curve to the data, ie what if it was very skewed; would it matter if we were summarising it as a mean and sd and assuming normality? we'll quantify the answer to this question in later chapters.
 
 
