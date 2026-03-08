@@ -224,6 +224,10 @@ write a function to provide tidy results of an RM ANOVA for a 2X2 pre/post inter
 
 ...
 
+## CFA/SEM
+
+lavaan
+
 ## Test of other parameters (aka assumption tests)
 
 - equal variances
