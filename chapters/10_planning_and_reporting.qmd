@@ -1,3 +1,5 @@
 # Planning and reporting
 
 TODO
+
+see ADEMP_preregistration_template.qmd
