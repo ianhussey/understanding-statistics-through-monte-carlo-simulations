@@ -5,5 +5,5 @@
 *.DS_Store
 
 /.quarto/
-/old
-/_book/*
+old/*
+_book/*
