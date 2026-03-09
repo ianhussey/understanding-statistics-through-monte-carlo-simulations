@@ -779,4 +779,11 @@ Download and complete the [exercises for this chapter](../exercises/4_data_gener
 - improve tidy section
 - add the "is this data normal?" exercise to this lesson or as a recap; remind people about the difference between sample and population, and that simulated data gives you access to the ground truth.
 - standardize use of set.seed above
+- add note on Concept of DGP: If you sample the entire population, you still need inferential stats to understand the DGP. Eg if you study astronauts, and there are only 12 of them, and you recruit all of them, you don't automatically know the DGP, which is an abstraction, involves error, etc
+- Other distributions to add?
+  - Skew normal data
+  - Uniform data
+  - Likert data? (?other than truffle)
+  - mixed cor and factor data
+  - Item level data? (lavaan)
 
