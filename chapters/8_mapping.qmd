@@ -16,7 +16,7 @@ The big question for this lesson:
 
 How do we repeat the same “generate → analyze” workflow lots of times, without copy–pasting code?
 
-Answer: **mapping**. In the tidyverse, this is usually done with the `{purrr}` package (and, later, `{furrr}` for parallel processing).
+Answer: mapping. In the tidyverse, this is usually done with the `{purrr}` package (and, later, `{furrr}` for parallel processing).
 
 By the end of this chapter, you should be able to:
 
@@ -46,7 +46,7 @@ plan(multisession)
 
 ```
 
-## **Recap: generate and analyze functions**
+## Recap: generate and analyze functions
 
 Here is the same example setup you saw earlier: two conditions (control vs intervention), normally distributed scores, and a two-sample *t*-test.
 
@@ -84,7 +84,7 @@ analyze <- function(data) {
 
 ```
 
-## **Doing it once**
+## Doing it once
 
 ```{r}
 
@@ -98,7 +98,7 @@ results <-
 results
 ```
 
-## **Why copy–paste is the enemy**
+## Why copy–paste is the enemy
 
 You already saw the “bad” way: calling the same code block over and over and binding it with bind_rows().
 
@@ -112,9 +112,9 @@ This is bad because:
 
 So: we need a principled way to repeat the same computation. To do this, we can use the "`map()`" family of functions in R.
 
-## **The core idea of mapping**
+## The core idea of mapping
 
-### **map() repeats a function over a vector/list**
+### map() repeats a function over a vector/list
 
 purrr::map() takes:
 
@@ -122,7 +122,7 @@ purrr::map() takes:
 
 -   a function (.f)
 
-    and returns a **list of outputs** (always a list).
+    and returns a list of outputs (always a list).
 
 Let's look at a simple example. Imagine we have a vector of numbers (from 1 to 4) and, for each number, we want to add 10. We can use `map()` to do this:
 
@@ -136,9 +136,9 @@ map(numbers, ~ .x + 10)
 
 Notice the output is a list, even though each element is just a number. This is on purpose: returning a list is the “safest” default, because in real work you might return complicated objects (models, data frames, plots…) and lists handle these diverse objects most effectively, and prevent errors from arising.
 
-### **The anonymous-function shorthand: `~`**
+### The anonymous-function shorthand: `~`
 
-When you look at the example above, you might be wondering: what is the **`~`** symbol, and what is it doing? This is referred to as the **anonymous-function (lambda) shorthand** in {purrr} formula syntax. This lets you define a short function within the `map()` family of functions. In the case above, our function was "add 10 to the input", where .x stands for the current input.
+When you look at the example above, you might be wondering: what is the `~` symbol, and what is it doing? This is referred to as the anonymous-function (lambda) shorthand in {purrr} formula syntax. This lets you define a short function within the `map()` family of functions. In the case above, our function was "add 10 to the input", where .x stands for the current input.
 
 More concretely, the two lines of code below are equivalent:
 
@@ -160,9 +160,9 @@ map(numbers, ~ .x + 10)
 
 You’ll see the \~ .x style constantly in tidyverse simulation code.
 
-## **A first simulation with map()**
+## A first simulation with map()
 
-### **Map over iterations**
+### Map over iterations
 
 Ideally, simulations need an iteration index, which tells us what "round" of the simulation a given set of outputs are part of. We can often define these iterations simply, like:
 
@@ -216,7 +216,7 @@ simulation_results_list
 
 ```
 
-### **Extract one element**
+### Extract one element
 
 Elements from the list output of `map()` are accessed with \[\[ \]\]. For example, if we want the output of the first iteration, we can do this:
 
@@ -226,7 +226,7 @@ simulation_results_list[[1]]
 
 ```
 
-## **Turning a list into a tidy tibble**
+## Turning a list into a tidy tibble
 
 Even though lists are helpful for preventing errors, we ideally would prefer the output to be in a tidy format, like a dataframe or a tibble, since this is easier to work with later. To get this type of tidier output, we can use the `map_dfr()` function, which returns dataframes as output instead of lists.
 
@@ -250,7 +250,7 @@ simulation_results
 
 As you can see, now simulation_results is a single tibble, not a list.
 
-### **Add the iteration number**
+### Add the iteration number
 
 When we look at the nice output above from `map_dfr`, we're missing one important piece of information: the iteration number! As we said above, we ideally want to keep this number so we know what result belongs to what step of the simulation.
 
@@ -302,15 +302,15 @@ simulation_results
 
 This "make a tibble, map into a list-column, then unnest()" pattern is one of the most fundamental and important ways to do tidy simulation.
 
-## **Another map\_\*() variant**
+## Another map\_\*() variant
 
 There are several different variants of the `map()` function. You already saw one above: the `map_dfr()` function, which gave a dataframe as output instead of the list output that `map()` gives. The other `map_*()` variants follow a similar pattern - they change the type of output that comes from the `map_*()` function.
 
 For example, imagine you want one number per iteration, rather than a dataframe or list. You might want a numeric vector of *p*-values. In this case, we could use `map_dbl()`.
 
-### **`map_dbl()` returns a numeric vector**
+### `map_dbl()` returns a numeric vector
 
-To use map_dbl(), your function must return **one numeric value**.
+To use map_dbl(), your function must return one numeric value.
 
 ```{r}
 
@@ -340,7 +340,7 @@ mean(p_values < .05)
 
 That number is an estimate of our statistical power under these parameter settings (with potentially lots of error because we only used 10 iterations). Try increasing to iterations \<- 1:1000 and rerun.
 
-## **Null vs alternative using mapping**
+## Null vs alternative using mapping
 
 Let’s recreate the “distribution of *p*-values under null vs alternative” simulations, but now using what we've learned from the `map()` functions.
 
@@ -420,7 +420,7 @@ As you can see, this involves some impractical copy-pasting, which (as we discus
 
 Our issue is that we have two different parameters (n_per_condition, mean_intervention) that we want to change. To achieve this, we cannot use `map()`, because `map()` can only handle one parameter changing at a time. Instead, we need a `map()` function that *can handle two inputs at once*. Fortunately, `map2()` was made for exactly this purpose! There also exist similar extensions for `map2_*()` as there are for `map_*()`, for example `map2_dfr()` and `map2_dbl()`: these behave identically to their `map_*()` equivalents, but just take two inputs instead of one.
 
-### **Use `map2()` to map multple parameters at once**
+### Use `map2()` to map multple parameters at once
 
 Let's first define our experiment parameters in a dataframe:
 
@@ -489,7 +489,7 @@ simulation_results |>
 
 The left panel shows the distribution of p-values from our simulations when mean_intervention = 0; the right panel shows the distribution of p-values from our simulations when mean_intervention = 0.5.
 
-## **Creating parameter grids more effectively:** `expand_grid()`
+## Creating parameter grids more effectively: `expand_grid()`
 
 In the example above, you will recall we constructed our parameter grid like this:
 
@@ -525,7 +525,7 @@ experiment_parameters <- expand_grid(
 
 `expand_grid()` greatly simplifies the process of specifying parameters for our simulations.
 
-## **Mapping with multiple inputs: `pmap()`**
+## Mapping with multiple inputs: `pmap()`
 
 Above, we used `map2()` to map two inputs into a simulation. But there will be many cases where we want to map many different inputs at once - not just one or two.
 
@@ -557,7 +557,7 @@ simulation_results <- experiment_parameters |>
 simulation_results
 ```
 
-## **`pmap()` for parameter sweeps**
+## `pmap()` for parameter sweeps
 
 This is the most common simulation pattern in this course:
 
@@ -619,7 +619,7 @@ power_summary
 
 ```
 
-## **Nested data frames (list-columns) are useful**
+## Nested data frames (list-columns) are useful
 
 When you map a function that returns a data frame, you get a list-column where each cell contains a data frame.
 
@@ -637,7 +637,7 @@ You already saw this with generated_data and results. The only new skill is:
 
 -   being comfortable with unnest() when you want to “flatten” results
 
-## **Parallel mapping with {furrr}**
+## Parallel mapping with {furrr}
 
 With the `map()` family of functions we have discussed in this chapter, simulations are run *in sequence*. For example, if we are running 100 iterations, this means that iteration 1 is run first; then iteration 2 is run; then iteration 3; etc.
 
@@ -679,7 +679,7 @@ simulation_parallel |>
 
 ```
 
-## **Summary**
+## Summary
 
 You now have the core “engine” for simulation in tidyverse form:
 
@@ -695,9 +695,9 @@ You now have the core “engine” for simulation in tidyverse form:
 
 -   `future_*()` variants can make big simulations faster
 
-## **Exercises**
+## Exercises
 
-### **Warm-up: map a simple function**
+### Warm-up: map a simple function
 
 1.  Create iterations \<- 1:20.
 
@@ -705,7 +705,7 @@ You now have the core “engine” for simulation in tidyverse form:
 
 3.  What type of object does map() return?
 
-### **Map a simulation 200 times**
+### Map a simulation 200 times
 
 1.  Set iterations \<- 1:200.
 
@@ -713,13 +713,13 @@ You now have the core “engine” for simulation in tidyverse form:
 
 3.  Compute the proportion of p \< .05.
 
-### **Extract a numeric vector of p-values**
+### Extract a numeric vector of p-values
 
 1.  Repeat the last exercise, but use map_dbl() to return a numeric vector.
 
 2.  Plot a histogram of the p-values.
 
-### **Make a tiny experiment with expand_grid() + pmap()**
+### Make a tiny experiment with expand_grid() + pmap()
 
 1.  Use expand_grid() to create an experiment with:
 
@@ -737,7 +737,7 @@ You now have the core “engine” for simulation in tidyverse form:
 
 3.  Plot the distribution of p-values and estimate power for each condition (one number per effect size).
 
-### **(Optional) Parallelize**
+### (Optional) Parallelize
 
 1.  Replace your `pmap()` call with `future_pmap()`.
 
