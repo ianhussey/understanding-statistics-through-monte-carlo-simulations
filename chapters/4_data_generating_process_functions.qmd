@@ -193,7 +193,7 @@ tibble(score = rnorm(n = n_per_condition,
                      sd = sd))
 ```
 
-Create two different tibbles, one for each group. The appropriate population mean is used in each.
+Create two different tibbles, one for each condition. The appropriate population mean is used in each.
 
 ```{r}
 n_per_condition <- 20
