@@ -46,6 +46,8 @@ book:
         - exercises/1_required_skills_exercises.qmd
         - exercises/3_writing_functions_exercises.qmd
         - exercises/4_data_generating_process_functions_exercises.qmd
+        - exercises/6_analysis_functions_exercises.qmd 
+        - exercises/8_mapping_exercises.qmd 
         
     - part: "Appendices"
       chapters:
@@ -53,7 +55,16 @@ book:
         - appendices/ADEMP_preregistration_template.qmd
         - appendices/crowded_room_problem.qmd
         - license.qmd
-
+        
+  navbar:
+    tools:
+      - icon: sun-fill
+        menu:
+          - text: Light
+            href: javascript:void(0)
+    background: primary
+    search: true
+    
 # bibliography: references.bib
 
 format:
@@ -61,11 +72,19 @@ format:
     toc: true
     toc_float: true
     code-fold: show
+    code-overflow: wrap
     code-tools: true
     warning: false
-    theme: cosmo
+    #theme: cosmo
+    df-print: kable
     #embed-resources: false
-    #highlight: haddock
+    #highlight-style: monokai
+    theme:
+      light: cosmo
+      dark: darkly
+    highlight-style:
+      light: haddock
+      dark: dracula
 
 editor: visual
 
