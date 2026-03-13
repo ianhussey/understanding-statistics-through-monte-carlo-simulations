@@ -191,7 +191,7 @@ experiment_parameters <- expand_grid(
 
 ```
 
-`expand_grid()` greatly simplifies the process of specifying parameters for our simulations.
+`expand_grid()` greatly simplifies the process of specifying parameters for our simulations, and figures out all of the combinations for us. 
 
 ## Sanity checking your parameter grid
 
@@ -224,7 +224,7 @@ There are different types of experiment designs that we might want to use in our
 
 A **fully-crossed** design is what `expand_grid()` gives you by default: every level of every parameter is combined with every level of every other parameter. This is especially relevant for small simulation designs (e.g., like our one above) or where we care about every level of the simulation.
 
-Fully-crossed designs are also easy to interpret: we can look at every combination of every parameter, summarise over them, and look at the whole trend. If the early parts of this course, we will be using fully-crossed designs most often for this reason.
+Fully-crossed designs are also easy to interpret: we can look at every combination of every parameter, summarise over them, and look at the whole trend. For much of this course, we will be using fully-crossed designs most often for this reason.
 
 Let's suppose, for example, we want to expand our experiment above to also have two different standard deviation possibilities (0.5 or 1) and two different mean_control values (0 and 0.1). A fully-crossed version of this would be:
 
@@ -258,9 +258,11 @@ height_parameters
 
 ```
 
+Clearly, some of these combinations are unrealistic, and probably would end up just being a waste of time to compute in our simulation. This brings us to designs that do not consider all combinations of all values: *non-fully-crossed designs*.
+
 ### Non-fully-crossed designs
 
-In non-fully-crossed designs, we remove values that we do not think are possible, or that we don't care about. This means that we would, for example, exclude the possibility of scarily-tall children in our `height_parameters` specification above.
+In non-fully-crossed designs, we remove values that we do not think are possible, plausible, or that we simply don't care about for whatever reason. This means that we would, for example, exclude the possibility of scarily-tall children in our `height_parameters` specification above.
 
 The best way to achieve this is to start with a fully-crossed design, and then use `filter()` to remove combinations we think are implausible. For example:
 
@@ -371,7 +373,7 @@ rectangle_parameters |>
 
 ```
 
-Which gives us the 121 actual possibilities. But why bother simulate all of those unnecessary values in the first place, when we could instead just calculate `area` directly for each `height` and `width` value? This would be much more efficient. And we can do just this, using `mutate()`:
+Which gives us the 121 actual possibilities. But why bother simulate all of those unnecessary values in the first place, when we could instead just calculate `area` directly for each `height` and `width` value? This would be much more efficient. And we can do just this, using `mutate()`, since the output of `expand_grid()` is already a tibble:
 
 ```{r}
 
@@ -386,7 +388,7 @@ rectangle_parameters |>
 
 ```
 
-When we simulate our data, there will be many cases where these types of "functional relationships" exist: i.e., where one variable is defined based on its relationship with other variable(s). In this case, the most efficient approach is to (i) simulate the other variables, and then (ii) use `mutate()` to create the variable which is dependent on those other variables.
+When we simulate our data, there will be many cases where these types of "functional relationships" exist: i.e., where one variable is defined based on its relationship with other variable(s). In this case, the most efficient approach is to (i) simulate the other "independent" variables, and then (ii) use `mutate()` to create the variable which is dependent on those other variables.
 
 Here’s another example. Imagine we’re simulating exam results for students, and we want to vary:
 
@@ -394,7 +396,7 @@ Here’s another example. Imagine we’re simulating exam results for students, 
 
 -   the average difficulty of questions ("easy" or "hard")
 
--   the *time limit* for the exam (time_limit_minutes: between 10 and 120 minutes
+-   the *time limit* for the exam (time_limit_minutes: between 10 and 120 minutes)
 
 A fully-crossed design would treat these as independent: any time limit could go with any number of questions. But in reality, if we simulate a 10-question quiz with easy questions we might reasonably only want to consider a 10 or 20 minute time limit, whereas a 60-question exam with hard questions might need 60–120 minutes. So the time limit we want to consider in our simulation depends on the number of questions and the difficulty.
 
@@ -480,60 +482,3 @@ In this chapter, we covered how to design simulation experiments by specifying t
 
 In the next chapter, we will learn how to *run* simulations across these parameter grids efficiently using the `map()` family of functions.
 
-## Exercises
-
-### Exercise 1: Basic parameter grid
-
-Use `expand_grid()` to create a parameter grid for a simulation where:
-
--   `n_per_condition` is 20, 50, or 100
-
--   `mean_intervention` is 0.2 or 0.8
-
--   `sd` is 1
-
--   `correlation_between_conditions` is 0.3 or 0.5.
-
-How many rows does the resulting grid have? Verify using `nrow()` and `distinct()`.
-
-### Exercise 2: Filtering implausible combinations
-
-Starting from the grid below, use `filter()` to remove any rows where `n_per_condition` is less than 50 **and** `mean_intervention` is less than 0.3. How many rows remain?
-
-```{r}
-
-expand_grid(
-  n_per_condition = c(20, 50, 100, 200),
-  mean_intervention = c(0.1, 0.3, 0.5),
-  sd = c(0.5, 1)
-)
-
-```
-
-### Exercise 3: Dependent parameters with `mutate()`
-
-You are simulating a reading comprehension study. Your parameters are:
-
--   `n_passages`: the number of passages participants read (5, 10, or 20)
-
--   `passage_difficulty`: "easy" or "hard"
-
-The total time allowed (`time_limit_minutes`) depends on the other two parameters: participants get 2 minutes per easy passage and 4 minutes per hard passage. Use `expand_grid()` and `mutate()` to create the parameter grid with `time_limit_minutes` derived from the other columns.
-
-### Exercise 4: Choosing the right design
-
-For each scenario below, determine whether you would use (a) a fully-crossed design, (b) a non-fully-crossed design with `filter()`, or (c) a design with dependencies using `mutate()`.
-
-1.  You vary sample size (50, 100, 200) and effect size (0.2, 0.5, 0.8), and all combinations are plausible.
-
-2.  You vary the number of predictors (2, 5, 10) and the number of observations (20, 50, 100, 500), but you want to exclude cases where the number of observations is smaller than 10 times the number of predictors.
-
-3.  You vary the number of items on a test (10, 20, 40) and want the total test time to always equal 2 minutes per item.
-
-4.  You are simulating a clinical trial and vary the dropout rate (5%, 15%, 30%) and treatment effect size (0.3, 0.5, 0.7). All combinations are realistic because patients drop out for many reasons unrelated to efficacy.
-
-5.  You are simulating ecological data on bird species counts across habitats. You vary habitat type (forest, wetland, urban) and survey area size (1 km², 5 km², 25 km²), but want to exclude large survey areas for urban habitats because contiguous urban green spaces larger than 5 km² are unrealistic in your study region.
-
-### Exercise 5: Build your own simulation design
-
-Think of a research question from an area of research you find interesting. Define at least three parameters you would want to vary, create a parameter grid using `expand_grid()`, and include at least one dependency or filter. Use `nrow()` and `distinct()` to sanity-check your grid. Write a brief comment (2–3 sentences) explaining why you chose each parameter value and why you included the dependency or filter.
