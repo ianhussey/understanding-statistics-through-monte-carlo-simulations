@@ -31,10 +31,6 @@ Notes to self on structure
 
 ## Week 1
 
-Before class
-
-- None
-
 In class
 
 - Slides in [keynote](../slides/week1/simulation_week_1.key), [powerpoint](../slides/week1/simulation_week_1.pptx), or [pdf](../slides/week1/simulation_week_1.pdf).
@@ -45,10 +41,6 @@ After class
 - [Chapter 2: Foundation concepts](../chapters/2_foundation_concepts.qmd).
 
 ## Week 2
-
-Before class
-
-- None
 
 In class
 
@@ -72,23 +64,16 @@ After class
 
 ## Week 4
 
-Before class
-
-- XX
-
 In class
 
 - [Chapter 5: Analysis functions](../chapters/5_analysis_functions.qmd).
+- [Chapter 11: Everything is regression](../chapters/11_everything_is_regression.qmd).
 
 After class
 
-- XX
+- Chapter 5's exercises (linked in chapter).
 
 ## Week 5
-
-Before class
-
-- XX
 
 In class
 
@@ -101,10 +86,6 @@ After class
 
 ## Week 6
 
-Before class
-
-- XX
-
 In class
 
 - [Chapter 8: Summarizing results](../chapters/8_summarizing_results.qmd).
@@ -116,10 +97,6 @@ After class
 
 ## Week 7
 
-Before class
-
-- XX
-
 In class
 
 - XX
@@ -129,10 +106,6 @@ After class
 - XX
 
 ## Week 8
-
-Before class
-
-- XX
 
 In class
 
@@ -144,10 +117,6 @@ After class
 
 ## Week 9
 
-Before class
-
-- XX
-
 In class
 
 - XX
@@ -157,10 +126,6 @@ After class
 - XX
 
 ## Week 10
-
-Before class
-
-- XX
 
 In class
 
@@ -172,10 +137,6 @@ After class
 
 ## Week 11
 
-Before class
-
-- XX
-
 In class
 
 - XX
@@ -185,10 +146,6 @@ After class
 - XX
 
 ## Week 12
-
-Before class
-
-- XX
 
 In class
 
@@ -200,10 +157,6 @@ After class
 
 ## Week 13
 
-Before class
-
-- XX
-
 In class
 
 - XX
@@ -213,10 +166,6 @@ After class
 - XX
 
 ## Week 14
-
-Before class
-
-- XX
 
 In class
 
