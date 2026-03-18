@@ -642,4 +642,7 @@ You now have learned one of the core things that makes a simulation a simulation
 
 As a take-home message, remember: `pmap()` will be our go-to function for the remainder of this book when it comes to simulation workflows.
 
-
+::: {.callout-tip title = "Practice writing analysis functions"}
+Ready to practice? 
+Download and complete the [exercises for this chapter](../exercises/8_mapping_exercises.qmd).
+:::
