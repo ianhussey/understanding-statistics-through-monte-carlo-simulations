@@ -33,7 +33,7 @@ Notes to self on structure
 
 In class
 
-- Slides in [keynote](../slides/week1/simulation_week_1.key), [powerpoint](../slides/week1/simulation_week_1.pptx), or [pdf](../slides/week1/simulation_week_1.pdf).
+- Slides in [keynote](https://github.com/ianhussey/improving-your-statistical-inferences-through-monte-carlo-simulations/raw/main/slides/week1/simulation_week_1.key), [powerpoint](https://github.com/ianhussey/improving-your-statistical-inferences-through-monte-carlo-simulations/raw/main/slides/week1/simulation_week_1.pptx), or [pdf](https://github.com/ianhussey/improving-your-statistical-inferences-through-monte-carlo-simulations/raw/main/slides/week1/simulation_week_1.pdf).
 
 After class
 
@@ -54,7 +54,7 @@ After class
 
 In class
 
-- [Slides: Is this normally distributed?](../slides/week3/is_this_normally_distributed.html).
+- [Slides: Is this normally distributed?](https://github.com/ianhussey/improving-your-statistical-inferences-through-monte-carlo-simulations/blob/main/slides/week3/is_this_normally_distributed.html).
 - [Chapter 4: Data Generating Process functions](../chapters/4_data_generating_process_functions.qmd).
 
 After class
