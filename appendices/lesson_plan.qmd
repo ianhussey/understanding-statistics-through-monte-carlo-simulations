@@ -66,7 +66,7 @@ After class
 
 In class
 
-- [Chapter 5: Analysis functions](../chapters/5_analysis_functions.qmd).
+- [Chapter 6: Analysis functions](../chapters/5_analysis_functions.qmd).
 - [Chapter 11: Everything is regression](../chapters/11_everything_is_regression.qmd).
 
 After class
@@ -77,12 +77,13 @@ After class
 
 In class
 
-- [Chapter 6: Creating simulation experiments](../chapters/6_creating_simulation_experiments.qmd). 
-- [Chapter 7: Mapping functions](../chapters/7_mapping.qmd). 
+- [Chapter 7: Creating simulation experiments](../chapters/6_creating_simulation_experiments.qmd). 
+- [Chapter 8: Mapping functions](../chapters/7_mapping.qmd). 
 
 After class
 
-- XX
+- Chapter 7's exercises (linked in chapter).
+- Chapter 8's exercises (linked in chapter).
 
 ## Week 6
 

@@ -27,13 +27,11 @@ How many rows does the resulting grid have? Verify using `nrow()` and `distinct(
 Starting from the grid below, use `filter()` to remove any rows where `n_per_condition` is less than 50 **and** `mean_intervention` is less than 0.3. How many rows remain?
 
 ```{r}
-
 expand_grid(
   n_per_condition = c(20, 50, 100, 200),
   mean_intervention = c(0.1, 0.3, 0.5),
   sd = c(0.5, 1)
 )
-
 ```
 
 ### Exercise 3: Dependent parameters with `mutate()`

@@ -31,10 +31,10 @@ book:
     - part: "Part II: Learning from Simulations"
       chapters:
         - chapters/11_everything_is_regression.qmd 
+        - chapters/12_estimation.qmd
         - chapters/violating_assumptions.qmd
         - chapters/testing_assumptions_and_conditional_tests.qmd
         - chapters/p_hacking.qmd
-        - chapters/p_values_and_confidence_intervals.qmd
         - chapters/difference_between_significant_and_nonsignificant.qmd
         - chapters/standardized_effect_sizes_and_range_restriction.qmd
         - chapters/impact_of_careless_responding.qmd
@@ -47,6 +47,7 @@ book:
         - exercises/3_writing_functions_exercises.qmd
         - exercises/4_data_generating_process_functions_exercises.qmd
         - exercises/6_analysis_functions_exercises.qmd 
+        - exercises/7_creating_simulation_experiments_exercises.qmd 
         - exercises/8_mapping_exercises.qmd 
         
     - part: "Appendices"
