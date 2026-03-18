@@ -8,6 +8,12 @@ if(file.exists("../_setup.R")){source("../_setup.R")}
 
 ## Exercises
 
+```{r}
+# dependencies
+library(dplyr)
+library(tidyr)
+```
+
 ### Exercise 1: Basic parameter grid
 
 Use `expand_grid()` to create a parameter grid for a simulation where:

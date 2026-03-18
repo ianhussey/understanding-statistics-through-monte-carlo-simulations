@@ -6,6 +6,17 @@
 if(file.exists("../_setup.R")){source("../_setup.R")}
 ```
 
+```{r}
+# dependencies
+library(dplyr)
+library(tidyr)
+library(purrr)
+library(furrr)
+
+# set up parallelization for future/furrr
+plan(multisession)
+```
+
 ### Warm-up: map a simple function
 
 1.  Create iterations \<- 1:20.
@@ -33,13 +44,9 @@ if(file.exists("../_setup.R")){source("../_setup.R")}
 1.  Use expand_grid() to create an experiment with:
 
     -   mean_intervention = c(0.3, 0.7)
-
     -   iteration = 1:1000
-
     -   n_per_condition = c(25, 100)
-
     -   mean_control = 0
-
     -   sd = c(0.5, 1)
 
 2.  Use `pmap()` + `map()` to generate and analyze.
@@ -51,3 +58,6 @@ if(file.exists("../_setup.R")){source("../_setup.R")}
 1.  Replace your `pmap()` call with `future_pmap()`.
 
 2.  Does it run faster?
+
+
+

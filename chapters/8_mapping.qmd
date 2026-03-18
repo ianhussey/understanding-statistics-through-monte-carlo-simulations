@@ -8,8 +8,6 @@ if(file.exists("../_setup.R")){source("../_setup.R")}
 
 ## Overview of tutorial
 
-ADD TIDY NESTED DATA SLIDES HERE - REITERATE NEED FOR TIDY INPUTS AND OUTPUTS
-
 Recall, once again, the five steps of Monte Carlo simulation:
 
 1. Design an experiment
@@ -326,7 +324,7 @@ and do 2000 iterations for each combination.
 This means we have four combinations in total. We could handle this using `map()`, defining each of those conditions separately, for example like:
 
 ```{r}
-iterations <- 1:2000 
+iterations <- 1:100 # lowered for testing; 2000 would be more appropriate 
 
 # null results, twenty per group
 simulation_results_null_twenty_per_group <-
@@ -401,7 +399,7 @@ Let's first define our experiment parameters in a tibble. We can do this using `
 ```{r}
 set.seed(42) 
 
-n_iterations <- 2000
+n_iterations <- 100 # lowered for testing; 2000 would be more appropriate
 
 experiment_parameters <- expand_grid(
   iteration = 1:n_iterations,
@@ -508,7 +506,7 @@ For example: maybe we want to vary all values of n_per_condition, mean_control, 
 With `pmap()`, we supply all of the parameters as a list to the .l argument, and our function (`generate_data()`) to the .f argument. We'll use the same approach as we used previously: run `pmap()` within a `mutate()` call and save the output to a `generated_data` column, then `map()` the generated data onto `analyse_data()`, then call `unnest()` on the results. Because we're now dealing with more combinations of parameters, we will lower the value of `n_iterations` from 2000 to 100 - otherwise our code might take a little while to run!
 
 ```{r}
-n_iterations <- 100
+n_iterations <- 100 # lowered for testing; 2000 would be more appropriate
 
 # specify the parameters
 experiment_parameters <- expand_grid(
@@ -578,7 +576,7 @@ library(furrr)
 plan(multisession)
 
 
-n_iterations <- 10000
+n_iterations <- 1000 # lowered for testing; 2000+ would be more appropriate
 
 # specify the parameters
 experiment_parameters <- expand_grid(
