@@ -1,4 +1,4 @@
-# Exercises for 'Mapping over functions' chapter <span class="badge badge-draft1">✎ Very rough draft</span>
+# Exercises for 'Mapping over functions' chapter <span class="badge badge-draft2">✎ Rough draft</span>
 
 ```{r}
 #| include: false
@@ -6,58 +6,195 @@
 if(file.exists("../_setup.R")){source("../_setup.R")}
 ```
 
+These exercises accompany the [mapping chapter](../chapters/8_mapping.qmd).
+
+You can complete these exercises in your local version of the .qmd file. Either download a copy of the whole book from github (see introduction), or download this .qmd using the download button on the top right of the page.
+
+Write code for each of the following. Remember that you can write pseudocode first if it helps.
+
 ```{r}
+#| include: false
 # dependencies
+library(tibble)
 library(dplyr)
 library(tidyr)
 library(purrr)
 library(furrr)
+library(ggplot2)
 
-# set up parallelization for future/furrr
-plan(multisession)
+set.seed(42)
+
+generate_data <- function(n_per_condition,
+                          mean_control,
+                          mean_intervention,
+                          sd) {
+
+  data_control <-
+    tibble(condition = "control",
+           score = rnorm(n = n_per_condition, mean = mean_control, sd = sd))
+
+  data_intervention <-
+    tibble(condition = "intervention",
+           score = rnorm(n = n_per_condition, mean = mean_intervention, sd = sd))
+
+  bind_rows(data_control, data_intervention)
+}
+
+analyse_data <- function(data) {
+  res_t_test <- t.test(formula = score ~ condition,
+                       data = data,
+                       var.equal = TRUE,
+                       alternative = "two.sided")
+
+  tibble(p = res_t_test$p.value)
+}
 ```
 
-### Warm-up: map a simple function
+## Warm-up (brief)
 
-1.  Create iterations \<- 1:20.
+### Repeat a simulation with `map()`
 
-2.  Use map() to compute sqrt() of each iteration.
+Use the `generate_data()` and `analyse_data()` helper functions defined above.
 
-3.  What type of object does map() return?
+Create `iterations <- 1:20`, then use `map()` to run the same simulation 20 times with:
 
-### Map a simulation 200 times
+-   `n_per_condition = 50`
+-   `mean_control = 0`
+-   `mean_intervention = 0.5`
+-   `sd = 1`
 
-1.  Set iterations \<- 1:200.
+Inspect the output. What object type did `map()` return?
 
-2.  Use map_dfr() to run generate_data(...) \|\> analyze() 200 times.
-
-3.  Compute the proportion of p \< .05.
-
-### Extract a numeric vector of p-values
-
-1.  Repeat the last exercise, but use map_dbl() to return a numeric vector.
-
-2.  Plot a histogram of the p-values.
-
-### Make a tiny experiment with expand_grid() + pmap()
-
-1.  Use expand_grid() to create an experiment with:
-
-    -   mean_intervention = c(0.3, 0.7)
-    -   iteration = 1:1000
-    -   n_per_condition = c(25, 100)
-    -   mean_control = 0
-    -   sd = c(0.5, 1)
-
-2.  Use `pmap()` + `map()` to generate and analyze.
-
-3.  Plot the distribution of p-values and estimate power for each condition (one number per effect size).
-
-### (Optional) Parallelize
-
-1.  Replace your `pmap()` call with `future_pmap()`.
-
-2.  Does it run faster?
+```{r}
 
 
 
+```
+
+### Return a numeric vector with `map_dbl()`
+
+Repeat the previous exercise using `map_dbl()` to extract only the `p` values into a numeric vector. Then calculate the proportion of p-values less than 0.05.
+
+```{r}
+
+
+
+```
+
+## Parameter grids + `pmap()` (our main focus)
+
+### Create a parameter grid with `expand_grid()`
+
+Use `expand_grid()` to create a parameter grid where:
+
+-   `iteration = 1:200`
+-   `n_per_condition = c(20, 60)`
+-   `mean_intervention = c(0, 0.4, 0.8)`
+-   `mean_control = 0`
+-   `sd = c(0.5, 1)`
+
+After creating the grid:
+
+1.  Check the total number of rows.
+2.  Use `distinct()` to verify the unique combinations of design parameters (excluding `iteration`).
+
+```{r}
+
+
+
+```
+
+### Generate data row-wise with `pmap()`
+
+Using your parameter grid, create a new object where each row has a list-column called `generated_data`, produced with `pmap()` and `generate_data()`.
+
+```{r}
+
+
+
+```
+
+### Analyse each generated dataset and unnest
+
+Starting from your object with the `generated_data` list-column:
+
+1.  Use `map()` to apply `analyse_data()` to each generated dataset.
+2.  Store the output in a `results` list-column.
+3.  Use `unnest()` to create one tidy simulation-results tibble.
+
+```{r}
+
+
+
+```
+
+## Write reusable wrappers
+
+### Write a simulation wrapper using `expand_grid()` + `pmap()`
+
+Write a function called `run_simulation_pmap()` with arguments:
+
+-   `n_iterations`
+-   `n_per_condition`
+-   `mean_intervention`
+-   `mean_control = 0`
+-   `sd = 1`
+-   `keep_data = FALSE`
+
+Function requirements:
+
+1.  Build a parameter grid with `expand_grid()`.
+2.  Generate data using `pmap()`.
+3.  Analyse data using `map()` + `analyse_data()`.
+4.  Return an unnested tibble.
+5.  If `keep_data = FALSE`, drop the `generated_data` list-column before returning.
+
+```{r}
+
+
+
+```
+
+## A whole new simulation, from scratch 
+
+### Build a new simulation with binary outcomes using `expand_grid()` + `pmap()`
+
+In this final exercise, write a full simulation workflow for a **different** data-generating process (binary outcomes instead of continuous scores), covering steps 1 through 4 of a simulation:
+
+1.  Design the experiment.
+2.  Write a `generate_data()` function.
+3.  Write an `analyse_data()` function.
+4.  Run the workflow many times using mapping.
+
+Use the following specification:
+
+1.  Build a parameter grid called `experiment_parameters_binary` using `expand_grid()` with `iteration = 1:300`, `n_per_condition = c(40, 120)`, `prob_control = c(0.20, 0.35)`, and `risk_difference = c(0, 0.10)`.
+
+2.  Add `prob_intervention` with `mutate(prob_intervention = prob_control + risk_difference)`.
+
+3.  Write `generate_data_binary(n_per_condition, prob_control, prob_intervention)`. The function should return a tibble with columns `condition` (`"control"` / `"intervention"`) and `outcome` (0/1, generated with `rbinom()`).
+
+4.  Write `analyse_data_binary(data)` that returns a one-row tibble with columns `p` (from `prop.test()` comparing intervention vs control) and `risk_difference_observed` (observed mean outcome in intervention minus control).
+
+5.  Run the simulation by using `pmap()` to generate a data for each row of `experiment_parameters_binary` (making sure the generated data are stored in the output), then `map()` to apply `analyse_data_binary()`, then `unnest()` into one tibble.
+
+6.  Do some basic checks: confirm the number of output rows equals the number of rows in the parameter grid, and verify all `p` values are between 0 and 1.
+
+```{r}
+
+
+
+```
+
+
+## Optional extension: parallel mapping with `{furrr}`
+
+### Use `future_pmap()` and `future_map()`
+
+Rewrite your pipeline using `future_pmap()` and `future_map()`. Use `plan(multisession)` and `furrr_options(seed = TRUE)` to keep results reproducible.
+
+```{r}
+
+
+
+```
