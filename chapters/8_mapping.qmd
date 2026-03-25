@@ -8,6 +8,11 @@ if(file.exists("../_setup.R")){source("../_setup.R")}
 
 ## Overview of tutorial
 
+### TO-DO
+1. Fix the outputs so we just call head() and not the full output 
+2. Especially for the nested data
+
+
 Recall, once again, the five steps of Monte Carlo simulation:
 
 1. Design an experiment
@@ -111,7 +116,8 @@ Let's look at a simple example. Imagine we have a vector of numbers (from 1 to 4
 ```{r}
 numbers <- c(1, 2, 3, 4)
 
-map(numbers, ~ .x + 10)
+map(.x = numbers, 
+    .f = ~ .x + 10)
 ```
 
 Notice the output is a list, even though each element is just a number. This is on purpose: returning a list is often seen as a "safe" default, because in real work you might return complicated objects (models, data frames, plots…) and lists handle these diverse objects most effectively, and prevent errors from arising. Of course, remember that in this course we want to return our simulation output as a `tibble`, not a list. We will get to this in a few sections. 
@@ -200,6 +206,9 @@ simulation_results_list[[1]]
 Even though lists are helpful for preventing errors, we ideally would prefer the output to be in a tibble format like we have previously discussed. To get a tibble as output, we can use the `map_dfr()` function, which returns dataframes as output instead of lists. If each iteration returns a tibble with the same columns (in our case, a single column called p), map_dfr() will map and then bind the outputs together into a single dataframe. We can then simply convert this dataframe back to a tibble.
 
 ```{r}
+
+set.seed(42)
+
 simulation_results <-
   map_dfr(.x = iterations, 
           .f = ~ {
@@ -233,9 +242,13 @@ tibble(iteration = 1:20)
 2.  We mutate a new column into this new tibble, called results (or whatever we want to call it). Then we run `map()` within the `mutate()` call using the iteration column and our `generate_data()` and `analyse_data()` functions, like this:
 
 ```{r}
+
+iterations <- 1:20
+
 simulation_results <-
   tibble(iteration = iterations) |>
-  mutate(results = map(
+  mutate(results = 
+           map(
     .x = iteration, 
     .f = ~ {
     generate_data(n_per_condition = 50,
@@ -243,7 +256,8 @@ simulation_results <-
                   mean_intervention = 0.5,
                   sd = 1) |>
       analyse_data()
-  }))
+  })
+  )
 
 simulation_results
 ```
@@ -262,7 +276,7 @@ simulation_results <-
                   sd = 1) |>
       analyse_data()
   })) |>
-  unnest(results)
+  ?unnest(results)
 
 simulation_results
 ```
@@ -280,7 +294,7 @@ For example, imagine you want one number per iteration, rather than a dataframe 
 To use map_dbl(), your function must return one numeric value.
 
 ```{r}
-iterations <- 1:10
+iterations <- 1:1000
 
 p_values <-
   map_dbl(
@@ -295,6 +309,9 @@ p_values <-
   })
 
 p_values
+
+mean(p_values < .05)
+
 ```
 
 Now p_values is a plain numeric vector. With this vector, we can do a quick summary, like look at the proportion of p-values less than 0.05:
@@ -523,7 +540,9 @@ simulation_results <- experiment_parameters |>
     generated_data = pmap(
       .l = list(n_per_condition, mean_control, mean_intervention, sd),
       .f = generate_data),
-    results = map(generated_data, analyse_data)
+    results = map(
+      .x = generated_data, 
+      .f = analyse_data)
   ) |>
   unnest(results)
 
