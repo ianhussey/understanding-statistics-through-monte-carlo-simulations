@@ -36,7 +36,7 @@ book:
         - chapters/12_estimation.qmd
         #- chapters/13_hypothesis_testing.qmd
         #- chapters/se_sd_confusion.qmd
-        # - chapters/estimands_and_inappropriate_analyses.qmd # add chapter on how not to analyze RCTs! 
+        #- chapters/estimands_and_inappropriate_analyses.qmd # add chapter on how not to analyze RCTs! 
         - chapters/violating_assumptions.qmd
         - chapters/testing_assumptions_and_conditional_tests.qmd
         - chapters/p_hacking.qmd
@@ -54,6 +54,7 @@ book:
         - exercises/6_analysis_functions_exercises.qmd 
         - exercises/7_creating_simulation_experiments_exercises.qmd 
         - exercises/8_mapping_exercises.qmd 
+        - exercises/11_everything_is_regression_exercises.qmd 
         - exercises/12_estimation_exercises.qmd 
         
     - part: "Appendices"

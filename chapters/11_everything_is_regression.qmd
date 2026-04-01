@@ -324,4 +324,8 @@ $$
 
 Inferences regarding whether the slope is non-zero *in the population rather than the sample* are based on quantifying the uncertainty around the estimate of $\beta_{\text{slope}}$, for example through Confidence Intervals and *p*-values. We won't get into how that is done here; the point here is to link *p*-values (which you are likely more familiar with) to the slope of the line equation underlying linear regression (which are may be less familar with). 
 
+::: {.callout-tip title = "Practice testing the equivalence of named tests and linear regression"}
+Note that while there are exercises related to this chapter, we suggest that you do **not** complete them until you have read all of Part 1 of the book (learning how to simulate).
 
+Download and complete the [exercises for this chapter](../exercises/11_everything_is_regression_exercises.qmd).
+:::
