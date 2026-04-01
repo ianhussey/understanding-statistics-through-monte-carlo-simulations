@@ -1,5 +1,11 @@
 # Exercises for 'Creating simulation experiments' chapter <span class="badge badge-draft1">✎ Very rough draft</span>
 
+## TO-DO: 
+### Make explicit not to write functions 
+### How to make an R chunk; add the chunks into the exercises
+### Make exercise 3 wording clearer 
+### Make variables named 
+
 ```{r}
 #| include: false
 # if it is available, run the setup script that tells quarto to round all df/tibble outputs to three decimal places
@@ -50,11 +56,27 @@ You are simulating a reading comprehension study. Your parameters are:
 
 The total time allowed (`time_limit_minutes`) depends on the other two parameters: participants get 2 minutes per easy passage and 4 minutes per hard passage. Use `expand_grid()` and `mutate()` to create the parameter grid with `time_limit_minutes` derived from the other columns.
 
+```{r}
+
+example_data <- expand_grid(
+  n_passages = c(5, 10, 20),
+  passage_difficulty = c("easy", "hard")
+) %>%
+  mutate(time_limit_minutes = 
+           case_when(
+             passage_difficulty == "easy" ~ n_passages * 2,
+             passage_difficulty == "hard" ~ n_passages * 4
+             )
+         )
+
+```
+
+
 ### Exercise 4: Choosing the right design
 
 For each scenario below, determine whether you would use (a) a fully-crossed design, (b) a non-fully-crossed design with `filter()`, or (c) a design with dependencies using `mutate()`.
 
-1.  You vary sample size (50, 100, 200) and effect size (0.2, 0.5, 0.8), and all combinations are plausible.
+1.  You vary sample size (50, 100, 200) and effect size (0.2, 0.5, 0.8), and all combinations are of interest and kept. 
 
 2.  You vary the number of predictors (2, 5, 10) and the number of observations (20, 50, 100, 500), but you want to exclude cases where the number of observations is smaller than 10 times the number of predictors.
 
