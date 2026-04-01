@@ -81,7 +81,7 @@ results <-
   generate_data(n_per_condition = 50,
                 mean_control = 0,
                 mean_intervention = 0.5,
-                sd = 1) |>
+                sd = 1) %>%
   analyse_data()
 
 results
@@ -156,7 +156,7 @@ simulation_results_list <-
     generate_data(n_per_condition = 50,
                   mean_control = 0,
                   mean_intervention = 0.5,
-                  sd = 1) |>
+                  sd = 1) %>%
       analyse_data()
   })
 
@@ -180,7 +180,7 @@ simulation_results_list <-
     generate_data(n_per_condition = 50,
                   mean_control = 0,
                   mean_intervention = 0.5,
-                  sd = 1) |>
+                  sd = 1) %>%
       analyse_data()
   })
 
@@ -206,9 +206,9 @@ simulation_results <-
     generate_data(n_per_condition = 50,
                   mean_control = 0,
                   mean_intervention = 0.5,
-                  sd = 1) |>
+                  sd = 1) %>%
       analyse_data()
-  }) |>
+  }) %>%
   # convert back to tibble
   as_tibble()
 
@@ -234,14 +234,14 @@ tibble(iteration = 1:20)
 
 ```{r}
 simulation_results <-
-  tibble(iteration = iterations) |>
+  tibble(iteration = iterations) %>%
   mutate(results = map(
     .x = iteration, 
     .f = ~ {
     generate_data(n_per_condition = 50,
                   mean_control = 0,
                   mean_intervention = 0.5,
-                  sd = 1) |>
+                  sd = 1) %>%
       analyse_data()
   }))
 
@@ -252,16 +252,16 @@ simulation_results
 
 ```{r}
 simulation_results <-
-  tibble(iteration = iterations) |>
+  tibble(iteration = iterations) %>%
   mutate(results = map(
     .x = iteration,
     .f = ~ {
     generate_data(n_per_condition = 50,
                   mean_control = 0,
                   mean_intervention = 0.5,
-                  sd = 1) |>
+                  sd = 1) %>%
       analyse_data()
-  })) |>
+  })) %>%
   unnest(results)
 
 simulation_results
@@ -289,8 +289,8 @@ p_values <-
     generate_data(n_per_condition = 50,
                   mean_control = 0,
                   mean_intervention = 0.5,
-                  sd = 1) |>
-      analyse_data() |>
+                  sd = 1) %>%
+      analyse_data() %>%
       pull(p)
   })
 
@@ -328,58 +328,58 @@ iterations <- 1:100 # lowered for testing; 2000 would be more appropriate
 
 # null results, twenty per group
 simulation_results_null_twenty_per_group <-
-  tibble(iteration = iterations) |>
+  tibble(iteration = iterations) %>%
   mutate(results = map(
     .x = iteration, 
     .f = ~ {
     generate_data(n_per_condition = 20,
                   mean_control = 0,
                   mean_intervention = 0,
-                  sd = 1) |>
+                  sd = 1) %>%
       analyse_data()
-  })) |>
+  })) %>%
   unnest(results)
 
 # null results, fifty per group
 simulation_results_null_fifty_per_group <-
-  tibble(iteration = iterations) |>
+  tibble(iteration = iterations) %>%
   mutate(results = map(
     .x = iteration,
     .f = ~ {
     generate_data(n_per_condition = 50,
                   mean_control = 0,
                   mean_intervention = 0,
-                  sd = 1) |>
+                  sd = 1) %>%
       analyse_data()
-  })) |>
+  })) %>%
   unnest(results)
 
 # alternative results, twenty per group
 simulation_results_alternative_twenty_per_group <-
-  tibble(iteration = iterations) |>
+  tibble(iteration = iterations) %>%
   mutate(results = map(
     .x = iteration, 
     .f = ~ {
     generate_data(n_per_condition = 20,
                   mean_control = 0,
                   mean_intervention = 0.5,
-                  sd = 1) |>
+                  sd = 1) %>%
       analyse_data()
-  })) |>
+  })) %>%
   unnest(results)
 
 # alternative results, fifty per group
 simulation_results_alternative_fifty_per_group <-
-  tibble(iteration = iterations) |>
+  tibble(iteration = iterations) %>%
   mutate(results = map(
     .x = iteration, 
     .f = ~ {
     generate_data(n_per_condition = 50,
                   mean_control = 0,
                   mean_intervention = 0.5,
-                  sd = 1) |>
+                  sd = 1) %>%
       analyse_data()
-  })) |>
+  })) %>%
   unnest(results)
 
 head(simulation_results_null_twenty_per_group)
@@ -415,7 +415,7 @@ experiment_parameters
 We can double-check our output to make sure we're covering all parameter combinations we care about. We can do this by calling `distinct()` on only the columns that we want to vary (and ignore iteration, since this just repeats settings). We can specify `.keep_all = TRUE` in `distinct()` to keep all columns for our inspection; by default, `distinct()` will drop columns that are not mentioned in the `distinct()` function:
 
 ```{r}
-experiment_parameters |>
+experiment_parameters %>%
   distinct(n_per_condition, mean_intervention, .keep_all = TRUE)
 ```
 
@@ -424,7 +424,7 @@ We now have our range of experiments defined: 2000 iterations for each combinati
 We’ll now run all of this over `map2()`. To do this, we need to specify one input in `map2()` with the .x argument (just like `map()`), and another input with the .y argument. We specify the function (`generate_data()`, in this case) with .f. And somewhat confusingly, all of this becomes the `.x` input for a call to `map()`, with `.f` being our `analyse_data()` function!
 
 ```{r}
-simulation_results <- experiment_parameters |>
+simulation_results <- experiment_parameters %>%
   mutate(
     results = map(
       .x = map2(
@@ -438,7 +438,7 @@ simulation_results <- experiment_parameters |>
         )
       ), 
       .f = analyse_data)
-  ) |>
+  ) %>%
   unnest(results)
 
 simulation_results
@@ -447,7 +447,7 @@ simulation_results
 We can now look at the distribution of p-values across sample sizes and values for `mean_intervention`, for example in a simple histogram:
 
 ```{r}
-simulation_results |>
+simulation_results %>%
   ggplot() +
   aes(x = p) +
   geom_histogram() +
@@ -465,7 +465,7 @@ The solution, fortunately, is simple: we just modify our workflow to store the g
 Let's look at how to do this:
 
 ```{r}
-simulation_results <- experiment_parameters |>
+simulation_results <- experiment_parameters %>%
   mutate(
     generated_data = map2(
         .x = n_per_condition,
@@ -480,7 +480,7 @@ simulation_results <- experiment_parameters |>
     results = map(
       .x = generated_data, 
       .f = analyse_data)
-  ) |>
+  ) %>%
   unnest(results)
 
 simulation_results
@@ -490,12 +490,28 @@ simulation_results
 Our output is identical to previously, except we now have the additional column `generated_data`, each of which contains a tibble. Let's look at what happens if we run `unnest()` on the `generated_data` column in the first row of the `simulation_results` tibble:
 
 ```{r}
-simulation_results |>
-  slice_head(n = 1) |>  # take the first row only
+simulation_results %>%
+  # take the first row only
+  slice_head(n = 1) %>%  
+  # unnest the generated data column into the tibble that contains it
   unnest(generated_data)
 ```
 
 We can now inspect the full set of generated data that was simulated for any given row in the `simulation_results`!
+
+We can also access the contents of individual data sets using base-R. Doing it this way can help us understand the nature of nested tibbles; that each cell in the tibble's data column contains another tibble. 
+
+```{r}
+data_set_1 <- simulation_results$generated_data[[1]]
+
+data_set_1 
+```
+
+In principle, we could re-analyze individual datasets, run other diagnostic tests or checks on them, etc.
+
+```{r}
+analyse_data(data_set_1)
+```
 
 ## Mapping with multiple inputs: `pmap()`
 
@@ -518,13 +534,11 @@ experiment_parameters <- expand_grid(
 )
 
 # use pmap() across this
-simulation_results <- experiment_parameters |>
-  mutate(
-    generated_data = pmap(
-      .l = list(n_per_condition, mean_control, mean_intervention, sd),
-      .f = generate_data),
-    results = map(generated_data, analyse_data)
-  ) |>
+simulation_results <- experiment_parameters %>%
+  mutate(generated_data = pmap(.l = list(n_per_condition, mean_control, mean_intervention, sd),
+                          .f = generate_data)) %>%
+  mutate(results = map(.x = generated_data, 
+                       .f = analyse_data)) %>%
   unnest(results)
 
 simulation_results
@@ -587,43 +601,38 @@ experiment_parameters <- expand_grid(
   sd = c(.5, 1)
 )
 
-simulation_parallel <- experiment_parameters |>
-  mutate(
-    generated_data = future_pmap(
-      .l = list(n_per_condition, mean_control, mean_intervention, sd),
-      .f = generate_data,
-      # this gives us a progress bar so we can see how the simulation is progressing
-      .progress = TRUE,
-      .options = furrr_options(seed = TRUE)
-    ),
-    results = future_map(
-      .x = generated_data,
-      .f = analyse_data,
-      .progress = TRUE,
-      .options = furrr_options(seed = TRUE)
-    )
-  )
+simulation_parallel <- experiment_parameters %>%
+  mutate(generated_data = future_pmap(.l = list(n_per_condition, mean_control, mean_intervention, sd),
+                                      .f = generate_data,
+                                      # this gives us a progress bar so we can see how the simulation is progressing
+                                      .progress = TRUE,
+                                      .options = furrr_options(seed = TRUE))) %>%
+  mutate(results = future_map(.x = generated_data,
+                              .f = analyse_data,
+                              .progress = TRUE,
+                              .options = furrr_options(seed = TRUE))) %>%
+  unnest(results)
 ```
 
 Once again, let's plot these results:
 
 ```{r}
-ggplot(simulation_results, aes(x = p)) +
+ggplot(simulation_parallel, aes(x = p)) +
   geom_histogram(bins = 30) +
   facet_wrap(~ n_per_condition, labeller = label_both) +
   theme_minimal()
 
-ggplot(simulation_results, aes(x = p)) +
+ggplot(simulation_parallel, aes(x = p)) +
   geom_histogram(bins = 30) +
   facet_wrap(~ mean_intervention, labeller = label_both) +
   theme_minimal()
 
-ggplot(simulation_results, aes(x = p)) +
+ggplot(simulation_parallel, aes(x = p)) +
   geom_histogram(bins = 30) +
   facet_wrap(~ mean_control, labeller = label_both) +
   theme_minimal()
 
-ggplot(simulation_results, aes(x = p)) +
+ggplot(simulation_parallel, aes(x = p)) +
   geom_histogram(bins = 30) +
   facet_wrap(~ sd, labeller = label_both) +
   theme_minimal()
@@ -646,3 +655,9 @@ As a take-home message, remember: `pmap()` will be our go-to function for the re
 Ready to practice? 
 Download and complete the [exercises for this chapter](../exercises/8_mapping_exercises.qmd).
 :::
+
+## TODO
+
+- more explicit content on nested dataframes, visualisation of it, viewing individual datasets in the viewer, etc. 
+- explain unnest() more.
+

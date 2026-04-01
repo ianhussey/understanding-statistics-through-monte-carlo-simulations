@@ -6,4 +6,11 @@
 if(file.exists("../_setup.R")){source("../_setup.R")}
 ```
 
-TODO
+## TODO
+
+- group_by() factors that were manipulated
+- meaningful summary methods; often mean estimates but not always
+- stability of estimates; MC SE
+- remember: only round results as you're about to print a table. why?
+- preparatory reading: siepe on estimands
+

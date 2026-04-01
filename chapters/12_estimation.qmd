@@ -1,4 +1,4 @@
-# Estimation <span class="badge badge-draft1">✎ Very rough draft</span>
+# Estimation <span class="badge badge-draft2">✎ Rough draft</span>
 
 ```{r}
 #| include: false
@@ -20,6 +20,9 @@ library(ggstance)
 library(patchwork)
 library(janitor)
 library(effectsize)
+library(ggstance)
+library(knitr)
+library(kableExtra)
 
 # set up parallelization
 plan(multisession)
@@ -27,8 +30,19 @@ plan(multisession)
 
 ## Simulation
 
-```{r}
+What does this simulation simulate? Specifically: 
 
+- What study design in the individual studies, and which part of the code should you inspect to understand this?
+- What data generating process, and which part of the code should you inspect to understand this?
+- What analysis, and which part of the code should you inspect to understand this?
+- What experiment is set up in the simulation as a whole, and which part of the code should you inspect to understand this? 
+
+The last two questions require us to first gain an understanding of how results are summarized across iterations.
+
+- What is the estimand quantified in the summary of the simulations' results, and which part of the code should you inspect to understand this?
+- Putting all the above together, how would you describe the research question asked by the simulation as a whole?
+
+```{r}
 # functions for simulation
 generate_data <- function(n_per_condition,
                           mean_control,
@@ -62,13 +76,13 @@ analyse <- function(data){
     model_parameters() %>%
     as_tibble() %>% 
     janitor::clean_names() %>% 
-    # select-and-rename the columns of interest
-    select(t,
-           df = df_error,
-           p,
-           mean_diff = difference,
-           mean_diff_ci_lower = ci_low,
-           mean_diff_ci_upper = ci_high)
+    # create estimand
+    mutate(confidence_interval_width = ci_high - ci_low) |>
+    # select columns of interest
+    select(mean_diff = difference, # for parameter recovery
+           ci_low, # plotting
+           ci_high, # plotting
+           confidence_interval_width) # estimand
   
   return(results)
 }
@@ -98,341 +112,157 @@ simulation <- experiment_parameters |>
                                .f = analyse,
                                .progress = TRUE,
                                .options = furrr_options(seed = TRUE)))
-
 ```
 
-## Estimated mean difference by sample size
+## Iteration-level results
 
-```{r fig.height=5, fig.width=6}
+### Just a few iterations
 
-# wrangle
+Difference-in-means
+
+```{r fig.height=8, fig.width=6}
+simulation |>
+  unnest(results) |>
+  group_by(n_per_condition) |>
+  slice(1:10) |>
+  ungroup() |>
+  # plot
+  ggplot(aes(mean_diff, iteration)) +
+  geom_vline(xintercept = 0, linetype = "dotted") +
+  geom_vline(xintercept = 1, linetype = "dashed", color = "purple") +
+  geom_point() +
+  scale_y_continuous(trans = "reverse",
+                     breaks = breaks_pretty(n = 10),
+                     name = "Study (iteration)") +
+  scale_x_continuous(breaks = breaks_pretty(n = 3),
+                     #limits = c(0,1),
+                     name = "Sample difference-in-means") +
+  theme_linedraw() +
+  theme(panel.grid.minor.y = element_blank()) +
+  ggtitle("Population Mean difference = 1") +
+  facet_wrap(~ n_per_condition, ncol = 2)
+```
+
+Difference-in-means and their 95% Confidence Intervals
+
+```{r fig.height=8, fig.width=6}
+simulation |>
+  unnest(results) |>
+  group_by(n_per_condition) |>
+  slice(1:10) |>
+  ungroup() |>
+  # plot
+  ggplot(aes(mean_diff, iteration, color = ci_low > 0)) +
+  geom_vline(xintercept = 0, linetype = "dotted") +
+  geom_vline(xintercept = 1, linetype = "dashed", color = "purple") +
+  geom_linerangeh(aes(xmin = ci_low, xmax = ci_high)) +
+  geom_point() +
+  scale_y_continuous(trans = "reverse",
+                     breaks = breaks_pretty(n = 10),
+                     name = "Study (iteration)") +
+  scale_x_continuous(breaks = breaks_pretty(n = 3),
+                     #limits = c(0,1),
+                     name = "Sample difference-in-means") +
+  theme_linedraw() +
+  labs(color = "Statistically significant") +
+  theme(panel.grid.minor.y = element_blank()) +
+  ggtitle("Population Mean difference = 1") +
+  facet_wrap(~ n_per_condition, ncol = 2)
+```
+
+### All the iterations
+
+Difference-in-means
+
+```{r}
 simulation |>
   unnest(results) |>
   # plot
-  ggplot(aes(n_per_condition*2, mean_diff, color = mean_diff > 0)) +
+  ggplot(aes(n_per_condition*2, mean_diff)) +
   geom_hline(yintercept = 0, linetype = "dotted") +
   geom_jitter(alpha = 0.25) +
   geom_hline(yintercept = 1, linetype = "dashed", color = "purple") +
   scale_x_continuous(breaks = breaks_pretty(n = 10),
-                     name = "Total N") +
+                     name = "Total sample size per study") +
   scale_y_continuous(breaks = breaks_pretty(n = 10),
                      #limits = c(0,1),
-                     name = "Sample mean difference") +
+                     name = "Sample difference-in-means") +
   theme_linedraw() +
   scale_color_viridis_d(begin = 0.4, end = 0.6) +
   ggtitle("Population Mean difference = 1") 
-
 ```
 
-```{r fig.height=8, fig.width=6}
-
-# wrangle
-simulation |>
-  unnest(results) |>
-  group_by(n_per_condition) |>
-  slice(1:10) |>
-  ungroup() |>
-  # plot
-  ggplot(aes(mean_diff, iteration, color = mean_diff > 0)) +
-  geom_vline(xintercept = 0, linetype = "dotted") +
-  geom_vline(xintercept = 1, linetype = "dashed", color = "purple") +
-  geom_point() +
-  scale_y_continuous(trans = "reverse",
-                     breaks = breaks_pretty(n = 10),
-                     name = "Study (iteration)") +
-  scale_x_continuous(breaks = breaks_pretty(n = 3),
-                     #limits = c(0,1),
-                     name = "Sample mean difference") +
-  theme_linedraw() +
-  theme(panel.grid.minor.y = element_blank()) +
-  ggtitle("Population Mean difference = 1") +
-  facet_wrap(~ n_per_condition, ncol = 2)
-
-```
-
-
-
-```{r fig.height=8, fig.width=6}
-
-# wrangle
-simulation |>
-  unnest(results) |>
-  group_by(n_per_condition) |>
-  slice(1:10) |>
-  ungroup() |>
-  # plot
-  ggplot(aes(mean_diff, iteration, color = mean_diff_ci_lower > 0)) +
-  geom_vline(xintercept = 0, linetype = "dotted") +
-  geom_vline(xintercept = 1, linetype = "dashed", color = "purple") +
-  geom_linerangeh(aes(xmin = mean_diff_ci_lower, xmax = mean_diff_ci_upper)) +
-  geom_point() +
-  scale_y_continuous(trans = "reverse",
-                     breaks = breaks_pretty(n = 10),
-                     name = "Study (iteration)") +
-  scale_x_continuous(breaks = breaks_pretty(n = 3),
-                     #limits = c(0,1),
-                     name = "Sample mean difference") +
-  theme_linedraw() +
-  theme(panel.grid.minor.y = element_blank()) +
-  ggtitle("Population Mean difference = 1") +
-  facet_wrap(~ n_per_condition, ncol = 2)
-
-```
-
+Difference-in-means' 95% Confidence Interval width
 
 ```{r}
-
 simulation |>
   unnest(results) |>
   # plot
-  ggplot(aes(n_per_condition*2, mean_diff_ci_upper - mean_diff_ci_lower)) +
+  ggplot(aes(n_per_condition*2, confidence_interval_width)) +
   geom_jitter(alpha = 0.25) +
   geom_hline(yintercept = 0, linetype = "dotted") +
   scale_x_continuous(breaks = breaks_pretty(n = 10),
-                     name = "Total N") +
+                     name = "Total sample size per study") +
   scale_y_continuous(breaks = breaks_pretty(n = 10),
                      #limits = c(0,1),
-                     name = "CI width") +
+                     name = "Sample 95% CI width") +
   theme_linedraw() +
   scale_color_viridis_d(begin = 0.3, end = 0.7) +
   ggtitle("Population Mean difference = 1")
+```
 
-summary_ci_width <- simulation |>
+## Summarise across iterations
+
+Remember: almost without exception, you must `group_by()` all factors that you experimentally manipualated in the `expand_grid()`, otherwise you are combining results across conditions, making it difficult to know what to conclude (i.e., apples-and-oranges comparisons).
+
+```{r}
+# summarise results
+results_summary <- simulation |>
   unnest(results) |>
-  mutate(ci_width = mean_diff_ci_upper - mean_diff_ci_lower) |>
   group_by(n_per_condition) |>
-  summarize(mean_ci_width = mean(ci_width),
-            min_ci_width = min(ci_width),
-            max_ci_width = max(ci_width))
+  summarize(mean_difference_in_means = mean(mean_diff),
+            mean_ci_low = mean(ci_low),
+            mean_ci_high = mean(ci_high),
+            mean_confidence_interval_width = mean(confidence_interval_width))
 
-library(ggstance)
+# table
+# remember: only round results as you're about to print a table
+results_summary |>
+  mutate_if(is.numeric, round, digits = 1)
+```
 
-ggplot(summary_ci_width, aes(n_per_condition*2, mean_ci_width)) +
+Difference-in-means
+
+```{r}
+ggplot(results_summary, aes(n_per_condition*2, mean_difference_in_means)) +
+  geom_point() +
+  geom_linerange(aes(ymin = mean_ci_low, ymax = mean_ci_high)) +
+  geom_hline(yintercept = 0, linetype = "dotted") +
+  scale_x_continuous(breaks = breaks_pretty(n = 10),
+                     name = "Total sample size per study") +
+  scale_y_continuous(breaks = breaks_pretty(n = 5),
+                     #limits = c(0,1),
+                     name = "Mean sample difference-in-means\n(and mean 95% CIs)") +
+  theme_linedraw() +
+  ggtitle("Population difference-in-means = 1")
+```
+
+Difference-in-means' 95% Confidence Interval width
+
+```{r}
+ggplot(results_summary, aes(n_per_condition*2, mean_confidence_interval_width)) +
   geom_hline(yintercept = 0, linetype = "dotted") +
   #geom_linerange(aes(ymin = min_ci_width, ymax = max_ci_width)) +
   geom_point() +
   #scale_y_continuous(name = "95% CI width\n(mean [min, max])", limits = c(0, NA)) +
-  scale_y_continuous(name = "Mean 95% CI width", limits = c(0, NA)) +
-  scale_x_continuous(breaks = breaks_pretty(n = 9), name = "Total N") +
+  scale_y_continuous(name = "Mean sample 95% CI width", 
+                     limits = c(0, NA)) +
+  scale_x_continuous(breaks = breaks_pretty(n = 9), 
+                     name = "Total sample size per study") +
   theme_linedraw() +
   scale_color_viridis_d(begin = 0.3, end = 0.7) +
-  ggtitle("Population Mean difference = 1") 
-
+  ggtitle("Population Mean difference = 1")
 ```
-
--   Each point is a difference-in-means from one dataset (i.e., one iteration).
--   The population difference-in-means is 0.5. Notice how the distribution of sample difference-in-means values vary by sample size: difference-in-means values above 2.0 and below -0.5 are observed when sample size is very small. As sample size gets larger, they stabilize. However, individual datasets still generate difference-in-means values that diverge substantially from the true value of 0.5.
-
-### Ordered by statistical significance
-
-Let's color the difference-in-meanss by their statistical significance.
-
-```{r fig.height=5, fig.width=6}
-simulation |>
-  unnest(results) |>
-  mutate(significant = p < .05) |>
-  # plot
-  ggplot(aes(n_per_condition*2, mean_diff, color = significant)) +
-  geom_jitter(alpha = 0.25) +
-  geom_hline(yintercept = 0, linetype = "dotted") +
-  scale_x_continuous(breaks = breaks_pretty(n = 10),
-                     name = "Total N") +
-  scale_y_continuous(breaks = breaks_pretty(n = 10),
-                     #limits = c(0,1),
-                     name = "difference-in-means") +
-  theme_linedraw() +
-  scale_color_viridis_d(begin = 0.3, end = 0.7, direction = -1) +
-  ggtitle("Population difference-in-means = 0.5")
-```
-
--   There is clearly a cut-off value for each sample size that determines when a difference-in-means value is associated with a significant vs. non-significant t-test p-value. What determines this cut-off? Do you have an intuition for it?
-
-### Average effect size for significant effects
-
-Quick aside: Significant results are more likely to be published than non significant ones. If we only look at the significant results, what is the average effect size by N?
-
-Plot only the significant effect sizes, and add their means.
-
-```{r fig.height=5, fig.width=6}
-simulation |>
-  unnest(results) |>
-  mutate(significant = p < .05) |>
-  filter(significant) |>
-  # plot
-  ggplot(aes(n_per_condition*2, mean_diff, color = significant)) +
-  geom_jitter(alpha = 0.25) +
-  # add mean points 
-  stat_summary(fun = "mean",
-               geom = "point",
-               size = 3,
-               color = "#35608DFF") +
-  geom_hline(yintercept = 0, linetype = "dotted") +
-  scale_x_continuous(breaks = breaks_pretty(n = 10),
-                     name = "Total N") +
-  scale_y_continuous(breaks = breaks_pretty(n = 10),
-                     #limits = c(0,1),
-                     name = "difference-in-means") +
-  theme_linedraw() +
-  scale_color_viridis_d(begin = 0.3, end = 0.7, direction = -1) +
-  ggtitle("Population difference-in-means = 0.5")
-```
-
--   Back to the q: There is clearly a cut-off value for each sample size that determines when a difference-in-means value is associated with a significant vs. non-significant t-test p-value. What determines this cut-off? Do you have an intuition for it?
-
-## difference-in-means and its 95% CIs
-
-To understand it further, let's add the 95% Confidence Intervals.
-
-### Randomly select one dataset per sample size
-
-To understand the plot, we'll plot just one data set (iteration) for each sample size.
-
-Re-run the chunk to select new random values. Notice how the magnitude of the difference-in-means values 'dance' around between data sets due to random sampling error, but the width of the Confidence Intervals do not. Confidence width is steady as it is a function of sample size.
-
-```{r}
-simulation |>
-  unnest(results) |>
-  mutate(significant = p < .05) |>
-  # randomly sample 1 effects size per sample size
-  group_by(n_per_condition) |>
-  slice_sample(n = 1) |>
-  ungroup() |>
-  # plot
-  ggplot(aes(n_per_condition*2, mean_diff, color = significant)) +
-  geom_point() +
-  # 95% CIs
-  geom_linerange(aes(ymin = mean_diff_ci_lower, ymax = mean_diff_ci_upper)) +
-  geom_hline(yintercept = 0, linetype = "dotted") +
-  scale_x_continuous(breaks = breaks_pretty(n = 10),
-                     name = "Total N") +
-  scale_y_continuous(breaks = breaks_pretty(n = 10),
-                     #limits = c(0,1),
-                     name = "difference-in-means") +
-  theme_linedraw() +
-  scale_color_viridis_d(begin = 0.3, end = 0.7) +
-  ggtitle("Population difference-in-means = 0.5\nOne randomly selected dataset per sample size")
-```
-
--   Significant when 95% CI excludes zero effect size
-
-### All datasets
-
-Now let's plot all the data sets (iterations).
-
-```{r fig.height=10, fig.width=12}
-simulation |>
-  unnest(results) |>
-  mutate(significant = p < .05,
-         total_n = paste("N =", n_per_condition*2),
-         total_n = fct_reorder(total_n, as.numeric(str_extract(total_n, "\\d+")))) |>
-  # plot
-  ggplot(aes(iteration, mean_diff, color = significant)) +
-  geom_point(alpha = 0.5) +
-  geom_linerange(aes(ymin = mean_diff_ci_lower, ymax = mean_diff_ci_upper), alpha = 0.2) +
-  geom_hline(yintercept = 0, linetype = "dotted") +
-  scale_x_continuous(breaks = breaks_pretty(n = 10),
-                     name = "Iteration") +
-  scale_y_continuous(breaks = breaks_pretty(n = 10),
-                     #limits = c(0,1),
-                     name = "difference-in-means") +
-  theme_linedraw() +
-  scale_color_viridis_d(begin = 0.3, end = 0.7) +
-  facet_wrap(~ total_n, ncol = 3, scales = "free_y")
-```
-
-### Ordered by difference-in-means
-
-The above plot is hard to understand. Let's order the difference-in-meanss from smallest to largest, so the small ones are on the left and the large ones are on the right.
-
-```{r fig.height=10, fig.width=12}
-simulation |>
-  unnest(results) |>
-  mutate(significant = p < .05,
-         total_n = paste("N =", n_per_condition*2),
-         total_n = fct_reorder(total_n, as.numeric(str_extract(total_n, "\\d+")))) |>
-  arrange(n_per_condition, mean_diff) |>
-  group_by(n_per_condition) |>
-  mutate(rank = row_number()) |>
-  ungroup() |>
-  # plot
-  ggplot(aes(rank, mean_diff, color = significant)) +
-  geom_point() +
-  geom_linerange(aes(ymin = mean_diff_ci_lower, ymax = mean_diff_ci_upper), alpha = 0.2) +
-  geom_hline(yintercept = 0, linetype = "dotted") +
-  scale_x_continuous(breaks = breaks_pretty(n = 10),
-                     name = "Ranked iteration") +
-  scale_y_continuous(breaks = breaks_pretty(n = 10),
-                     #limits = c(0,1),
-                     name = "difference-in-means") +
-  theme_linedraw() +
-  scale_color_viridis_d(begin = 0.3, end = 0.7) +
-  facet_wrap(~ total_n, ncol = 3)
-```
-
--   Notice the relationship between 95% CI and p value significance.
--   A certain percentage of difference-in-meanss are green vs. blue. What is this percentage also called? What statistical property?
-
-## Mean difference-in-means and mean interval width by sample size
-
-Now let's average over the difference-in-meanss in each condition to find the mean difference-in-means and its mean 95% CIs.
-
-```{r fig.height=2.5, fig.width=6}
-simulation_summary <- simulation |>
-  # unnest results
-  unnest(results) |>
-  group_by(n_per_condition) |>
-  summarize(proportion_significant = mean(p < .05), 
-            mean_mean_diff = mean(mean_diff),
-            mean_mean_diff_ci_lower = mean(mean_diff_ci_lower),
-            mean_mean_diff_ci_upper = mean(mean_diff_ci_upper)) |>
-  mutate(centered_mean_mean_diff_ci_lower = mean_mean_diff_ci_lower - mean_mean_diff,
-         centered_mean_mean_diff_ci_upper = mean_mean_diff_ci_upper - mean_mean_diff)
-
-# plot results
-p1 <- ggplot(simulation_summary, aes(n_per_condition*2, mean_mean_diff)) +
-  geom_point() +
-  geom_linerange(aes(ymin = mean_mean_diff_ci_lower, ymax = mean_mean_diff_ci_upper)) +
-  geom_hline(yintercept = 0, linetype = "dotted") +
-  scale_x_continuous(breaks = breaks_pretty(n = 10),
-                     name = "Total sample size") +
-  scale_y_continuous(breaks = breaks_pretty(n = 5),
-                     #limits = c(0,1),
-                     name = "Mean difference-in-means\n(and mean 95% CIs)") +
-  theme_linedraw() +
-  ggtitle("Population difference-in-means = 0.5")
-
-p1
-```
-
-## Mean difference-in-means and power by sample size
-
-```{r fig.height=5, fig.width=6}
-p2 <- ggplot(simulation_summary, aes(n_per_condition*2, proportion_significant)) +
-  geom_point() +
-  geom_hline(yintercept = 0.05, linetype = "dotted") +
-  geom_hline(yintercept = 0.80, linetype = "dotted") +
-  scale_x_continuous(breaks = breaks_pretty(n = 10),
-                     name = "Total sample size") +
-  scale_y_continuous(breaks = breaks_pretty(n = 5),
-                     limits = c(0,1),
-                     name = "Proportion of significant\np-values") +
-  theme_linedraw() 
-
-p1 + p2 + plot_layout(ncol = 1)
-```
-
-## Exercise: Power for equivalence test
-
-See Lakens et al., 2018 for a tutorial on the concepts below.
-
-Using a Smallest Effect Size of Interest (SESOI) of difference-in-means = 0.2, what is the power of a Two One-Sided Equivalence Test (TOST) for different sample sizes? What N is needed for 80% power to detect a true null effect size as equivalent to zero?
-
-Note: because reasons, use the 90% Confidence Interval instead of 95 (see Lakens et al., 2018).
-
-```{r}
-if(file.exists("../images/lakens et al 2018 figure 1.png")){
-  knitr::include_graphics("../images/lakens et al 2018 figure 1.png")
-}
-```
+  
 
 
