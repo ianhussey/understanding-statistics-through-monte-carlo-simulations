@@ -1,23 +1,18 @@
-https://quartopub.com/
-
-  Terminal:
+Terminal:
 
 ````
 cd ~/git/improving-your-statistical-inferences-through-monte-carlo-simulations
-quarto publish quarto-pub
+quarto publish gh-pages
 ````
 
 or
 
 ```
-quarto publish quarto-pub --no-render
+quarto publish gh-pages --no-render
 ```
-
-
 
 preview
 
-``` 
+```
 quarto preview
 ```
-

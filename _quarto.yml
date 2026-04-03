@@ -2,6 +2,7 @@ project:
   type: book
   resources:
     - "!slides/"
+    - CNAME
 
 book:
   title: "Improving your statistical inferences through Monte Carlo simulations"
