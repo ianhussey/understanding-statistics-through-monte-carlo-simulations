@@ -5,7 +5,7 @@ project:
     - CNAME
 
 book:
-  title: "Improving your statistical inferences through Monte Carlo simulations"
+  title: "Understanding statistics through Monte Carlo simulations"
   subtitle: "in R and tidyverse"
   author:
     - name: Ian Hussey

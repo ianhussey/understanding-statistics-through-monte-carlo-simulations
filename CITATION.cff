@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+title: "Understanding statistics through Monte Carlo simulations"
+message: "If you use this book, please cite it as below."
+type: software
+authors:
+  - family-names: Hussey
+    given-names: Ian
+    orcid: "https://orcid.org/0000-0001-8906-7559"
+  - family-names: Cummins
+    given-names: Jamie
+    orcid: "https://orcid.org/0000-0002-9729-4900"
+date-released: "2026-04-04"
+url: "https://simulations.tidyver.se"
+repository-code: "https://github.com/ianhussey/improving-your-statistical-inferences-through-monte-carlo-simulations"
+license: CC-BY-4.0
+keywords:
+  - Monte Carlo simulation
+  - statistics
+  - R
+  - tidyverse

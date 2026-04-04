@@ -32,6 +32,12 @@ There is also a growing literature on reporting standards, preregistration, and 
 -   Siepe et al. (2024) Simulation studies for methodological research in psychology: A standardized template for planning, preregistration, and reporting. *Psychological Methods*. doi: [10.1037/met0000695](https://doi.org/10.1037/met0000695)
 -   Pawel et al. (2023) Pitfalls and potentials in simulation studies: Questionable research practices in comparative simulation studies allow for spurious claims of superiority of any method. *Biometrical Journal*. doi: [10.1002/bimj.202200091](https://doi.org/10.1002/bimj.202200091)
 
+## Citation
+
+If you use this book, please cite it as:
+
+> Hussey, I. & Cummins, J. (2026). *Understanding Statistics through Monte Carlo simulations*. [simulations.tidyver.se](https://simulations.tidyver.se)
+
 ## Contributing
 
 If you are interested in contributing to or adapting this eBook, all code and data are available on [GitHub](https://github.com/ianhussey/improving-your-statistical-inferences-through-monte-carlo-simulations).
