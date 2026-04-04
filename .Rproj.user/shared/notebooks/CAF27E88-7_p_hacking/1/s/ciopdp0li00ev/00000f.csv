@@ -1,0 +1,79 @@
+"0",""
+"0","library(tidyr)"
+"0","library(dplyr)"
+"2","G3;
+Attaching package: ‘dplyr’
+
+g"
+"2","G3;The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+g"
+"2","G3;The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+g"
+"0","library(forcats)"
+"0","library(stringr)"
+"0","library(ggplot2)"
+"0","library(scales)"
+"0","library(patchwork)"
+"0","library(tibble)"
+"0","library(purrr) "
+"2","G3;
+Attaching package: ‘purrr’
+
+g"
+"2","G3;The following object is masked from ‘package:scales’:
+
+    discard
+
+g"
+"0","library(furrr)"
+"2","G3;Loading required package: future
+g"
+"0","library(faux)"
+"2","G3;
+************
+Welcome to faux. For support and examples visit:
+https://debruine.github.io/faux/
+- Get and set global package options with: faux_options()
+************
+g"
+"0","library(janitor)"
+"2","G3;
+Attaching package: ‘janitor’
+
+g"
+"2","G3;The following objects are masked from ‘package:stats’:
+
+    chisq.test, fisher.test
+
+g"
+"0","#library(afex)"
+"0","library(knitr)"
+"0","library(kableExtra)"
+"2","G3;Registered S3 methods overwritten by 'htmltools':
+  method               from         
+  print.html           tools:rstudio
+  print.shiny.tag      tools:rstudio
+  print.shiny.tag.list tools:rstudio
+g"
+"2","G3;Registered S3 method overwritten by 'rmarkdown':
+  method         from
+  print.paged_df     
+g"
+"2","G3;
+Attaching package: ‘kableExtra’
+
+g"
+"2","G3;The following object is masked from ‘package:dplyr’:
+
+    group_rows
+
+g"
+"0","# set up parallelization"
+"0","plan(multisession)"
+"0",""

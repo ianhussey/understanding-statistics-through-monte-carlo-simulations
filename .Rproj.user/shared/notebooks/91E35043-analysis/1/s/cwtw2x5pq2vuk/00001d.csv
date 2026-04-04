@@ -1,0 +1,13 @@
+"0",""
+"0","# max sd = ""fucking"": mean = , sd =  "
+"0","dat_closure_fucking <- closure_generate("
+"0","  mean = ""5.09"","
+"0","  sd = ""3.29"","
+"0","  n = 22, "
+"0","  scale_min = 1,"
+"0","  scale_max = 9,"
+"0","  ask_to_proceed = FALSE"
+"0",")"
+"2","G3;→ ATTENTION: Long runtime ahead!
+g"
+"0","dat_closure_fucking"

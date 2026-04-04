@@ -1,0 +1,15 @@
+{
+  "hash": "02381fe97947bb75ed05de1eafa3974b",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Summarizing results <span class=\"badge badge-draft1\">✎ Very rough draft</span>\n\n\n\n## TODO\n\n- group_by() factors that were manipulated\n- meaningful summary methods; often mean estimates but not always\n- stability of estimates; MC SE\n- remember: only round results as you're about to print a table. why?\n- preparatory reading: siepe on estimands\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

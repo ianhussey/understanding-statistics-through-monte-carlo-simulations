@@ -1,0 +1,12 @@
+"0",""
+"0","lm(yi ~ 1,"
+"0","   weights = n_intervention + n_control,"
+"0","   data = es) |>"
+"0","  model_parameters()"
+"1","Parameter   | Coefficient |   SE |        95% CI | t(7) |     p
+---------------------------------------------------------------
+(Intercept) |        0.10 | 0.06 | [-0.04, 0.25] | 1.70 | 0.133
+"
+"2","G3;[33m
+Uncertainty intervals (equal-tailed) and p-values (two-tailed) computed using a Wald t-distribution approximation.[39m
+g"

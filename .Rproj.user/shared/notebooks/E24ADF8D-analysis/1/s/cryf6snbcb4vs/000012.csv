@@ -1,0 +1,7 @@
+"0","compute_cohens_d_equal_n(dat_extreme$valence_mean[1], 
+                         dat_extreme$valence_sd[1], 
+                         dat_extreme$valence_mean[2], 
+                         dat_extreme$valence_sd[2])
+"
+"1","[1] -18.58741
+"
