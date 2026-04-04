@@ -1,5 +1,0 @@
-"0",""
-"0","dat_tides |>"
-"0","  plot_tides() +"
-"0","  geom_hline(yintercept = 4*.66, linetype = ""dashed"", color = ""darkred"")"
-"0",""

@@ -1,5 +1,0 @@
-"0",""
-"0","simulation_summary |>"
-"0","  mutate_if(is.numeric, round_half_up, digits = 2) |>"
-"0","  kable() |>"
-"0","  kable_classic(full_width = FALSE)"

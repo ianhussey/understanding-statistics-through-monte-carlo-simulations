@@ -1,5 +1,0 @@
-"0",""
-"0","weighted.mean(x = es$yi, w = n_intervention + n_control) |>"
-"0","  round_half_up(digits = 2) "
-"1","[1] 0.1
-"

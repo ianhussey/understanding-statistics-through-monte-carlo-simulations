@@ -1,5 +1,0 @@
-"0",""
-"0","es |>"
-"0","  summarize(mean_effect_size = round_half_up(mean(yi), digits = 2)) |>"
-"0","  kable() |>"
-"0","  kable_classic(full_width = FALSE)"

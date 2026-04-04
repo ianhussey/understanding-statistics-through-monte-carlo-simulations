@@ -1,8 +1,0 @@
-"0",""
-"0","# set default chunk options"
-"0","knitr::opts_chunk$set(message = FALSE,"
-"0","                      warning = FALSE)"
-"0",""
-"0","# disable scientific notation"
-"0","options(scipen = 999) "
-"0",""

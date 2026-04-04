@@ -1,7 +1,0 @@
-"0",""
-"0","dat_subset <- dat_processed |>"
-"0","  filter(word %in% c(""hateful"", ""racist"", ""dishonest"", ""authoritarian"", ""shrewd"", ""loving"", ""honest"")) "
-"0",""
-"0","dat_subset |>"
-"0","  kable() |>"
-"0","  kable_classic(full_width = FALSE)"
