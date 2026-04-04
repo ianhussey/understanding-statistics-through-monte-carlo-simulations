@@ -1,7 +1,7 @@
 Terminal:
 
 ````
-cd ~/git/improving-your-statistical-inferences-through-monte-carlo-simulations
+cd ~/git/understanding-statistics-through-monte-carlo-simulations
 quarto publish gh-pages
 ````
 
