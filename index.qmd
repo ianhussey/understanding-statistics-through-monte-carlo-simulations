@@ -36,7 +36,9 @@ There is also a growing literature on reporting standards, preregistration, and 
 
 If you use this book, please cite it as:
 
-> Hussey, I. & Cummins, J. (2026). *Understanding Statistics through Monte Carlo simulations*. [simulations.tidyver.se](https://simulations.tidyver.se)
+> Hussey, I. & Cummins, J. (2026). *Understanding Statistics through Monte Carlo simulations*. [simulations.tidyver.se](https://simulations.tidyver.se) doi: [10.5281/zenodo.19420477](https://doi.org/10.5281/zenodo.19420477)
+
+[![DOI](https://zenodo.org/badge/1103938948.svg)](https://doi.org/10.5281/zenodo.19420477)
 
 ## Contributing
 
