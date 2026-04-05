@@ -1,6 +1,6 @@
 ## Introduction {.unnumbered}
 
-This [Open Source](license.qmd) eBook provides materials for the semester-long Master's seminar course "Improving your statistical inferences through Monte Carlo simulations" that I deliver at the University of Bern's Institute of Psychology.
+This [Open Source](license.qmd) eBook provides materials for the semester-long Master's seminar course "Improving your statistical inferences through Monte Carlo simulations" that Ian teaches at the University of Bern's Institute of Psychology.
 
 This book is split into two parts:
 
@@ -11,7 +11,7 @@ This book is split into two parts:
 
 This book is made up of individual Quarto (.qmd) files. Many of the exercises are easiest to complete in your own local copy of these .qmd files.
 
-We suggest that you [download a .zip of the contents of this book's code and data from GitHub](https://github.com/ianhussey/improving-your-statistical-inferences-through-monte-carlo-simulations) to run the code locally, complete the exercises, etc.
+We suggest that you [download a .zip of the contents of this book's code and data from GitHub](https://github.com/ianhussey/understanding-statistics-through-monte-carlo-simulations) to run the code locally, complete the exercises, etc.
 
 You can also copy and paste the code for any chapter directly from the website. Click the "\</\> Code" button on the top right of each page to see the full .qmd file's code. You can copy and paste this into a .qmd file. However, it's probably easier to download all the .qmd files and data as mentioned above.
 
@@ -36,10 +36,10 @@ There is also a growing literature on reporting standards, preregistration, and 
 
 If you use this book, please cite it as:
 
-> Hussey, I. & Cummins, J. (2026). *Understanding Statistics through Monte Carlo simulations*. [simulations.tidyver.se](https://simulations.tidyver.se) doi: [10.5281/zenodo.19420477](https://doi.org/10.5281/zenodo.19420477)
+> Hussey, I. & Cummins, J. (2026). *Understanding Statistics through Monte Carlo simulations*. [simulations.tidyver.se](https://simulations.tidyver.se) doi: [10.5281/zenodo.19420665](https://doi.org/10.5281/zenodo.19420665)
 
-[![DOI](https://zenodo.org/badge/1103938948.svg)](https://doi.org/10.5281/zenodo.19420477)
+<a href="https://doi.org/10.5281/zenodo.19420665"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.19420665.svg" alt="DOI"></a>
 
 ## Contributing
 
-If you are interested in contributing to or adapting this eBook, all code and data are available on [GitHub](https://github.com/ianhussey/improving-your-statistical-inferences-through-monte-carlo-simulations).
+If you are interested in contributing to or adapting this eBook, all code and data are available on [GitHub](https://github.com/ianhussey/understanding-statistics-through-monte-carlo-simulations).
