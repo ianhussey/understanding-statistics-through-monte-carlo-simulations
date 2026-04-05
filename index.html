@@ -8,7 +8,7 @@
 
 <meta name="author" content="Ian Hussey">
 <meta name="author" content="Jamie Cummins">
-<meta name="dcterms.date" content="2026-04-04">
+<meta name="dcterms.date" content="2026-04-05">
 
 <title>Understanding statistics through Monte Carlo simulations</title>
 <style>
@@ -618,7 +618,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 4, 2026</p>
+      <p class="date">April 5, 2026</p>
     </div>
   </div>
   
@@ -633,7 +633,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introduction" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="introduction">Introduction</h2><p><img src="cover.png" title="Understanding statistics through Monte Carlo simulations" class="quarto-cover-image nolightbox img-fluid"></p>
-<p>This <a href="./license.html">Open Source</a> eBook provides materials for the semester-long Master’s seminar course “Improving your statistical inferences through Monte Carlo simulations” that I deliver at the University of Bern’s Institute of Psychology.</p>
+<p>This <a href="./license.html">Open Source</a> eBook provides materials for the semester-long Master’s seminar course “Improving your statistical inferences through Monte Carlo simulations” that Ian teaches at the University of Bern’s Institute of Psychology.</p>
 <p>This book is split into two parts:</p>
 <ol type="1">
 <li><strong>Learning to simulate</strong>. Chapters 2-10 teach you the conceptual structure of Monte Carlo simulation studies, and how to implement them in a modular R/tidyverse workflow that prioritizes understandability and code reusability over execution speed.</li>
@@ -666,18 +666,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="citation">Citation</h2>
 <p>If you use this book, please cite it as:</p>
 <blockquote class="blockquote">
-<p>Hussey, I. &amp; Cummins, J. (2026). <em>Understanding Statistics through Monte Carlo simulations</em>. <a href="https://simulations.tidyver.se">simulations.tidyver.se</a> doi: <a href="https://doi.org/10.5281/zenodo.19420477">10.5281/zenodo.19420477</a></p>
+<p>Hussey, I. &amp; Cummins, J. (2026). <em>Understanding Statistics through Monte Carlo simulations</em>. <a href="https://simulations.tidyver.se">simulations.tidyver.se</a> doi: <a href="https://doi.org/10.5281/zenodo.19420665">10.5281/zenodo.19420665</a></p>
 </blockquote>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="https://doi.org/10.5281/zenodo.19420477"><img src="https://zenodo.org/badge/1103938948.svg" class="img-fluid figure-img"></a></p>
-<figcaption>DOI</figcaption>
-</figure>
-</div>
+<p><a href="https://doi.org/10.5281/zenodo.19420665"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.19420665.svg" alt="DOI"></a></p>
 </section>
 <section id="contributing" class="level2">
 <h2 class="anchored" data-anchor-id="contributing">Contributing</h2>
-<p>If you are interested in contributing to or adapting this eBook, all code and data are available on <a href="https://github.com/ianhussey/improving-your-statistical-inferences-through-monte-carlo-simulations">GitHub</a>.</p>
+<p>If you are interested in contributing to or adapting this eBook, all code and data are available on <a href="https://github.com/ianhussey/understanding-statistics-through-monte-carlo-simulations">GitHub</a>.</p>
 
 
 <!-- -->
@@ -1160,7 +1155,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction {.unnumbered}</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>This <span class="co">[</span><span class="ot">Open Source</span><span class="co">](license.qmd)</span> eBook provides materials for the semester-long Master's seminar course "Improving your statistical inferences through Monte Carlo simulations" that I deliver at the University of Bern's Institute of Psychology.</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>This <span class="co">[</span><span class="ot">Open Source</span><span class="co">](license.qmd)</span> eBook provides materials for the semester-long Master's seminar course "Improving your statistical inferences through Monte Carlo simulations" that Ian teaches at the University of Bern's Institute of Psychology.</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>This book is split into two parts:</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
@@ -1196,13 +1191,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>If you use this book, please cite it as:</span>
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Hussey, I. &amp; Cummins, J. (2026). *Understanding Statistics through Monte Carlo simulations*. </span><span class="co">[</span><span class="ot">simulations.tidyver.se</span><span class="co">](https://simulations.tidyver.se)</span><span class="at"> doi: </span><span class="co">[</span><span class="ot">10.5281/zenodo.19420477</span><span class="co">](https://doi.org/10.5281/zenodo.19420477)</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Hussey, I. &amp; Cummins, J. (2026). *Understanding Statistics through Monte Carlo simulations*. </span><span class="co">[</span><span class="ot">simulations.tidyver.se</span><span class="co">](https://simulations.tidyver.se)</span><span class="at"> doi: </span><span class="co">[</span><span class="ot">10.5281/zenodo.19420665</span><span class="co">](https://doi.org/10.5281/zenodo.19420665)</span></span>
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![DOI](https://zenodo.org/badge/1103938948.svg)</span><span class="co">](https://doi.org/10.5281/zenodo.19420477)</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://doi.org/10.5281/zenodo.19420665"</span><span class="dt">&gt;&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://zenodo.org/badge/DOI/10.5281/zenodo.19420665.svg"</span><span class="ot"> alt</span><span class="op">=</span><span class="st">"DOI"</span><span class="dt">&gt;&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
 <span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="fu">## Contributing</span></span>
 <span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>If you are interested in contributing to or adapting this eBook, all code and data are available on <span class="co">[</span><span class="ot">GitHub</span><span class="co">](https://github.com/ianhussey/improving-your-statistical-inferences-through-monte-carlo-simulations)</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>If you are interested in contributing to or adapting this eBook, all code and data are available on <span class="co">[</span><span class="ot">GitHub</span><span class="co">](https://github.com/ianhussey/understanding-statistics-through-monte-carlo-simulations)</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
