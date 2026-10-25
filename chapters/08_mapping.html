@@ -129,6 +129,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   .badge-draft3   { background: #fef9e7; color: #7a5c00; border: 1px solid #f5d97a; }
   .badge-complete { background: #e6f4ea; color: #1e6e3a; border: 1px solid #b7dfbe; }
   .quarto-color-scheme-toggle::after { content: " Dark mode"; font-family: sans-serif; font-size: 0.85em; }
+  /* thin black border around the book's cover image */
+  .quarto-cover-image { border: 1px solid #000; }
 </style>
 
 
@@ -755,7 +757,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">0.001849</td>
+<td style="text-align: right;">0.2527042</td>
 </tr>
 </tbody>
 </table>
@@ -869,64 +871,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>simulation_results_list</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
-# A tibble: 1 × 1
-      p
-  &lt;dbl&gt;
-1 0.130
+# A tibble: 1 x 1
+        p
+    &lt;dbl&gt;
+1 0.00166
 
 [[2]]
-# A tibble: 1 × 1
+# A tibble: 1 x 1
        p
    &lt;dbl&gt;
-1 0.0127
+1 0.0599
 
 [[3]]
-# A tibble: 1 × 1
+# A tibble: 1 x 1
         p
     &lt;dbl&gt;
-1 0.00271
+1 0.00193
 
 [[4]]
-# A tibble: 1 × 1
-      p
-  &lt;dbl&gt;
-1 0.102
-
-[[5]]
-# A tibble: 1 × 1
+# A tibble: 1 x 1
         p
     &lt;dbl&gt;
-1 0.00128
+1 0.00309
+
+[[5]]
+# A tibble: 1 x 1
+       p
+   &lt;dbl&gt;
+1 0.0198
 
 [[6]]
-# A tibble: 1 × 1
-         p
-     &lt;dbl&gt;
-1 0.000216
+# A tibble: 1 x 1
+      p
+  &lt;dbl&gt;
+1 0.780
 
 [[7]]
-# A tibble: 1 × 1
+# A tibble: 1 x 1
        p
    &lt;dbl&gt;
-1 0.0153
+1 0.0493
 
 [[8]]
-# A tibble: 1 × 1
-          p
-      &lt;dbl&gt;
-1 0.0000416
+# A tibble: 1 x 1
+        p
+    &lt;dbl&gt;
+1 0.00660
 
 [[9]]
-# A tibble: 1 × 1
+# A tibble: 1 x 1
        p
    &lt;dbl&gt;
-1 0.0386
+1 0.0883
 
 [[10]]
-# A tibble: 1 × 1
-       p
-   &lt;dbl&gt;
-1 0.0154</code></pre>
+# A tibble: 1 x 1
+        p
+    &lt;dbl&gt;
+1 0.00754</code></pre>
 </div>
 </div>
 <p>You should see a list of tibbles, each tibble containing one <em>p</em>-value.</p>
@@ -953,124 +955,124 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>simulation_results_list</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
-# A tibble: 1 × 1
+# A tibble: 1 x 1
       p
   &lt;dbl&gt;
-1 0.476
+1 0.467
 
 [[2]]
-# A tibble: 1 × 1
-       p
-   &lt;dbl&gt;
-1 0.0390
+# A tibble: 1 x 1
+      p
+  &lt;dbl&gt;
+1 0.151
 
 [[3]]
-# A tibble: 1 × 1
-      p
-  &lt;dbl&gt;
-1 0.158
+# A tibble: 1 x 1
+        p
+    &lt;dbl&gt;
+1 0.00151
 
 [[4]]
-# A tibble: 1 × 1
-        p
-    &lt;dbl&gt;
-1 0.00241
+# A tibble: 1 x 1
+       p
+   &lt;dbl&gt;
+1 0.0299
 
 [[5]]
-# A tibble: 1 × 1
+# A tibble: 1 x 1
            p
        &lt;dbl&gt;
-1 0.00000601
+1 0.00000344
 
 [[6]]
-# A tibble: 1 × 1
-         p
-     &lt;dbl&gt;
-1 0.000783
+# A tibble: 1 x 1
+       p
+   &lt;dbl&gt;
+1 0.0130
 
 [[7]]
-# A tibble: 1 × 1
+# A tibble: 1 x 1
        p
    &lt;dbl&gt;
-1 0.0135
+1 0.0164
 
 [[8]]
-# A tibble: 1 × 1
-        p
-    &lt;dbl&gt;
-1 0.00120
+# A tibble: 1 x 1
+       p
+   &lt;dbl&gt;
+1 0.0938
 
 [[9]]
-# A tibble: 1 × 1
+# A tibble: 1 x 1
       p
   &lt;dbl&gt;
-1 0.147
+1 0.346
 
 [[10]]
-# A tibble: 1 × 1
+# A tibble: 1 x 1
           p
       &lt;dbl&gt;
-1 0.0000164
+1 0.0000167
 
 [[11]]
-# A tibble: 1 × 1
+# A tibble: 1 x 1
         p
     &lt;dbl&gt;
-1 0.00272
+1 0.00999
 
 [[12]]
-# A tibble: 1 × 1
+# A tibble: 1 x 1
        p
    &lt;dbl&gt;
-1 0.0106
+1 0.0949
 
 [[13]]
-# A tibble: 1 × 1
-        p
-    &lt;dbl&gt;
-1 0.00305
+# A tibble: 1 x 1
+       p
+   &lt;dbl&gt;
+1 0.0144
 
 [[14]]
-# A tibble: 1 × 1
-        p
-    &lt;dbl&gt;
-1 0.00186
-
-[[15]]
-# A tibble: 1 × 1
-       p
-   &lt;dbl&gt;
-1 0.0115
-
-[[16]]
-# A tibble: 1 × 1
-        p
-    &lt;dbl&gt;
-1 0.00664
-
-[[17]]
-# A tibble: 1 × 1
+# A tibble: 1 x 1
          p
      &lt;dbl&gt;
-1 0.000240
+1 0.000331
 
-[[18]]
-# A tibble: 1 × 1
-       p
-   &lt;dbl&gt;
-1 0.0149
+[[15]]
+# A tibble: 1 x 1
+      p
+  &lt;dbl&gt;
+1 0.219
 
-[[19]]
-# A tibble: 1 × 1
-       p
-   &lt;dbl&gt;
-1 0.0531
+[[16]]
+# A tibble: 1 x 1
+          p
+      &lt;dbl&gt;
+1 0.0000283
 
-[[20]]
-# A tibble: 1 × 1
+[[17]]
+# A tibble: 1 x 1
         p
     &lt;dbl&gt;
-1 0.00399</code></pre>
+1 0.00672
+
+[[18]]
+# A tibble: 1 x 1
+        p
+    &lt;dbl&gt;
+1 0.00127
+
+[[19]]
+# A tibble: 1 x 1
+         p
+     &lt;dbl&gt;
+1 0.000129
+
+[[20]]
+# A tibble: 1 x 1
+      p
+  &lt;dbl&gt;
+1 0.191</code></pre>
 </div>
 </div>
 </section>
@@ -1088,7 +1090,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">0.4757838</td>
+<td style="text-align: right;">0.4671351</td>
 </tr>
 </tbody>
 </table>
