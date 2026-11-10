@@ -48,6 +48,7 @@ book:
         - chapters/16_p_hacking.qmd # week 13? - ways to mess up inference
         - chapters/17_causality_and_selection_effects.qmd
         - chapters/reliability_misconceptions.qmd
+        - chapters/known_groups_estimand_switch.qmd
         #- chapters/standardized_effect_sizes_and_range_restriction.qmd
         #- chapters/standardized_effect_sizes_and_range_restriction.qmd
         
