@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>9&nbsp; Summarizing results ✎ TODO – Understanding statistics through Monte Carlo simulations</title>
+<title>9&nbsp; Summarizing results ✎ TODO – Understanding Statistics Through Monte Carlo Simulations</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -118,6 +118,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   main.content h3 { margin-top: 2rem; }
   main.content h4 { margin-top: 1.5rem; }
   .kable-table table { width: 70%; margin: 0 auto; }
+  /* Observable Inputs.button uses .btn-quarto: give it the plots' blue (the default text colour matched its background), and space between stacked buttons */
+  .btn.btn-quarto { color: #fff; background-color: #2780e3; border-color: #2780e3; margin: 0.4rem 0; }
+  .btn.btn-quarto:hover { background-color: #1f6ab8; border-color: #1f6ab8; }
+  /* quarto adds a copy button to every code cell, which still appears at the top right of Observable JS cells whose code is hidden (echo: false). hide it for those cells only */
+  .code-copy-outer-scaffold > .cell-code.hidden:has(> pre.js) ~ .code-copy-button { display: none; }
   .badge {
     display: inline-flex; align-items: center; gap: 0.3em;
     padding: 0.2em 0.65em; border-radius: 20px;
@@ -322,7 +327,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Understanding statistics through Monte Carlo simulations</a> 
+      <a href="../">Understanding Statistics Through Monte Carlo Simulations</a> 
         <div class="sidebar-tools-main">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
@@ -469,6 +474,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Weird causality and selection effects</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/reliability_misconceptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Two misconceptions about reliability <span class="badge badge-draft2">✎ Rough draft</span></span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -483,67 +494,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../exercises/01_required_skills_exercises.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Exercises for ‘Required skills’ chapter</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Exercises for ‘Required skills’ chapter</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../exercises/03_writing_functions_exercises.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Exercises for ‘Writing functions’ chapter</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Exercises for ‘Writing functions’ chapter</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../exercises/04_data_generating_process_functions_exercises.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Exercises for ‘Data Generating Process functions’ chapter</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Exercises for ‘Data Generating Process functions’ chapter</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../exercises/06_analysis_functions_exercises.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Exercises for ‘Analysis functions’ chapter</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Exercises for ‘Analysis functions’ chapter</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../exercises/07_creating_simulation_experiments_exercises.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Exercises for ‘Creating simulation experiments’ chapter</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Exercises for ‘Creating simulation experiments’ chapter</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../exercises/08_mapping_exercises.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Exercises for ‘Mapping over functions’ chapter</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Exercises for ‘Mapping over functions’ chapter</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../exercises/11_everything_is_regression_exercises.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Exercises for ‘Everything is regression’ chapter</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Exercises for ‘Everything is regression’ chapter</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../exercises/12_estimation_exercises.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Exercises for ‘Estimation’ chapter</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Exercises for ‘Estimation’ chapter</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../exercises/13_hypothesis_testing_exercises.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Exercises for ‘Hypothesis Testing’ chapter</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Exercises for ‘Hypothesis Testing’ chapter</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../exercises/16_p_hacking_exercises.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Exercises for ‘p-hacking’ chapter</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Exercises for ‘p-hacking’ chapter</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../exercises/end_of_course_assignment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">End of course assignment</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">End of course assignment</span></span></a>
   </div>
 </li>
       </ul>
@@ -560,25 +571,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../templates/ADEMP_preregistration_template.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">ADEMP simulation preregistration template</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">ADEMP simulation preregistration template</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../templates/simulation_template_hypothesis_testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Simulation template: hypothesis testing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Simulation template: hypothesis testing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../templates/simulation_template_estimation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Simulation template: estimation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Simulation template: estimation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../templates/simulation_template_hpc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Minimal HPC simulation template (Everything)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Minimal HPC simulation template (Everything)</span></span></a>
   </div>
 </li>
       </ul>
@@ -595,13 +606,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../classics/crowded_room_problem.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">The Crowded Room problem: Constraints on correlations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">The Crowded Room problem: Constraints on correlations</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../classics/cohens_d_biased.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Cohen’s <em>d</em> is a biased estimator of the population standardized mean difference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Cohen’s <em>d</em> is a biased estimator of the population standardized mean difference</span></span></a>
   </div>
 </li>
       </ul>
@@ -642,6 +653,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- TODO: stability of estimates; MC SE -->
 <!-- TODO: remember: only round results as you're about to print a table. why? -->
 <!-- TODO: preparatory reading: siepe on estimands -->
+<!-- Note! -->
+<!-- simhelpers (calc_relative()) defines relative bias as a ratio: the definition is E(T)/θ, estimated by T̄/θ, with MCSE √(S²_T/(Kθ²)). Its own vignette example makes this explicit — for an essentially unbiased estimator it returns rel_bias values of 0.989, 0.993, 1.004, i.e. the no-bias reference is 1. The same ratio convention is used for the variance-estimator version, rB = V̄/S²_T. -->
+<!-- Siepe et al. (2024), Table 3, define it as a scaled bias: {E(θ̂) − θ}/θ, estimated by {(Σθ̂ᵢ/n) − θ}/θ, MCSE √(S²/(θ²n)). No bias → 0. This is inherited from Morris et al. (2019, Table A1), so the guidelines literature convention is the centered one. -->
+<!-- Note the MCSEs are identical in the two sources. That's the giveaway: the two quantities differ by an additive constant, so variance, MCSE, and n_sim calculations are unaffected, and rel_bias - 1 converts one to the other with the MCSE column left untouched. -->
+<!-- Case for the ratio form (simhelpers) -->
+<!-- It sits in a family with relative MSE (E[(T−θ)²]/θ²) and relative RMSE, neither of which has a sensible centered version. Within-package consistency: every "relative" criterion is quantity ÷ true value. -->
+<!-- Reads directly as "the estimator recovers 99% of the true value," which is the natural framing for variance/SE estimators where you care about multiplicative attenuation and a benchmark of 1 is meaningful. -->
+<!-- Avoids sign weirdness when θ < 0: T̄/θ > 1 always means overestimation in magnitude, whereas the centered version's sign flips with the sign of θ. -->
+<!-- Case for the centered form (Siepe/Morris) -->
+<!-- It is bias, just rescaled. Keeping 0 as the reference makes it behave like absolute bias: same interpretation of sign, same reference line in plots, and the two panels of a figure can share a "zero = good" reading. -->
+<!-- ×100 gives percent bias, which is what the existing rules of thumb assume (e.g. Hoogland & Boomsma's |relative bias| < 5%). A threshold of 5% is ambiguous or wrong if applied to a ratio-scaled column. -->
+<!-- Numerically better behaved to report: near-unbiased results are 0.002 rather than 1.002, so rounding doesn't destroy the informative digits, and MCSE-vs-estimate comparisons are visually immediate. -->
+<!-- Both share the real problems: undefined at θ = 0 (simhelpers returns NA, as the vignette shows), unstable for small |θ|, and awkward for negative θ. Neither convention is more correct; the choice only matters for labelling and thresholds. -->
+<!-- State the formula in the manuscript rather than the name — Siepe et al. flag "not clearly defining performance measures" as a common pitfall, and this is precisely the case where the name is ambiguous. -->
+<!-- If they're subtracting 1 from rel_bias, make sure they haven't also subtracted anything from rel_bias_mcse (unchanged) or touched rel_mse/rel_rmse (not centerable). -->
+<!-- If they also use SimDesign anywhere in the pipeline, check its bias(type = "relative") convention separately rather than assuming it matches either source. -->
+<!-- Minor: the code comment spells it "simhelper" and "Sieppe" — worth fixing before it propagates into the manuscript. -->
 
 
 <!-- -->
@@ -1137,9 +1165,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">TODO</span><span class="co">: stability of estimates; MC SE --&gt;</span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">TODO</span><span class="co">: remember: only round results as you're about to print a table. why? --&gt;</span></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">TODO</span><span class="co">: preparatory reading: siepe on estimands --&gt;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Note! --&gt;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- simhelpers (calc_relative()) defines relative bias as a ratio: the definition is E(T)/θ, estimated by T̄/θ, with MCSE √(S²_T/(Kθ²)). Its own vignette example makes this explicit — for an essentially unbiased estimator it returns rel_bias values of 0.989, 0.993, 1.004, i.e. the no-bias reference is 1. The same ratio convention is used for the variance-estimator version, rB = V̄/S²_T. --&gt;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Siepe et al. (2024), Table 3, define it as a scaled bias: {E(θ̂) − θ}/θ, estimated by {(Σθ̂ᵢ/n) − θ}/θ, MCSE √(S²/(θ²n)). No bias → 0. This is inherited from Morris et al. (2019, Table A1), so the guidelines literature convention is the centered one. --&gt;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Note the MCSEs are identical in the two sources. That's the giveaway: the two quantities differ by an additive constant, so variance, MCSE, and n_sim calculations are unaffected, and rel_bias - 1 converts one to the other with the MCSE column left untouched. --&gt;</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Case for the ratio form (simhelpers) --&gt;</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- It sits in a family with relative MSE (E[(T−θ)²]/θ²) and relative RMSE, neither of which has a sensible centered version. Within-package consistency: every "relative" criterion is quantity ÷ true value. --&gt;</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Reads directly as "the estimator recovers 99% of the true value," which is the natural framing for variance/SE estimators where you care about multiplicative attenuation and a benchmark of 1 is meaningful. --&gt;</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Avoids sign weirdness when θ &lt; 0: T̄/θ &gt; 1 always means overestimation in magnitude, whereas the centered version's sign flips with the sign of θ. --&gt;</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Case for the centered form (Siepe/Morris) --&gt;</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- It is bias, just rescaled. Keeping 0 as the reference makes it behave like absolute bias: same interpretation of sign, same reference line in plots, and the two panels of a figure can share a "zero = good" reading. --&gt;</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ×100 gives percent bias, which is what the existing rules of thumb assume (e.g. Hoogland &amp; Boomsma's |relative bias| &lt; 5%). A threshold of 5% is ambiguous or wrong if applied to a ratio-scaled column. --&gt;</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Numerically better behaved to report: near-unbiased results are 0.002 rather than 1.002, so rounding doesn't destroy the informative digits, and MCSE-vs-estimate comparisons are visually immediate. --&gt;</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Both share the real problems: undefined at θ = 0 (simhelpers returns NA, as the vignette shows), unstable for small |θ|, and awkward for negative θ. Neither convention is more correct; the choice only matters for labelling and thresholds. --&gt;</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- State the formula in the manuscript rather than the name — Siepe et al. flag "not clearly defining performance measures" as a common pitfall, and this is precisely the case where the name is ambiguous. --&gt;</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- If they're subtracting 1 from rel_bias, make sure they haven't also subtracted anything from rel_bias_mcse (unchanged) or touched rel_mse/rel_rmse (not centerable). --&gt;</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- If they also use SimDesign anywhere in the pipeline, check its bias(type = "relative") convention separately rather than assuming it matches either source. --&gt;</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Minor: the code comment spells it "simhelper" and "Sieppe" — worth fixing before it propagates into the manuscript. --&gt;</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Text and figures: <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>. Code: <a href="https://opensource.org/licenses/MIT">MIT</a>.</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 
