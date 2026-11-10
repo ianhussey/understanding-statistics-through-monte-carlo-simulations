@@ -20,7 +20,7 @@ You can also copy and paste the code for any chapter directly from the website. 
 
 Learning to code is a practice skill. Almost anyone can become competent in writing reproducible code for data simulation and simulation studies with practice. More than anything else, completing this course requires that you practice in your own time, using not only the examples provided but also ones you create yourself.
 
-![](images/practice.png){.center width="60%"}
+![Comic by Sarah Andersen, from [Sarah's Scribbles](https://sarahcandersen.com/).](images/practice.png){.center width="60%"}
 
 ## Other learning resources
 
