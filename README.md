@@ -4,7 +4,10 @@
 
 ## License
 
-CC-BY 4.0
+This repository uses two licenses:
+
+- **Text and figures** are licensed under [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)](https://creativecommons.org/licenses/by-nc-nd/4.0/) (see [LICENSE](LICENSE)). You may copy and redistribute them unmodified for non-commercial purposes, provided you give appropriate credit (see citation below) and link to the license. You may not distribute modified versions (e.g., edited, translated, or remixed chapters), and commercial use (e.g., selling the material or including it in a paid course or commercial textbook) is not permitted without permission from the authors.
+- **Code** is licensed under the [MIT License](https://opensource.org/licenses/MIT) (see [LICENSE-CODE](LICENSE-CODE)). You may use, copy, modify, and distribute it for any purpose, including commercial use, provided the copyright and license notice are retained.
 
 
 

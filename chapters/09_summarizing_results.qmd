@@ -11,3 +11,31 @@ if(file.exists("../_setup.R")){source("../_setup.R")}
 <!-- TODO: stability of estimates; MC SE -->
 <!-- TODO: remember: only round results as you're about to print a table. why? -->
 <!-- TODO: preparatory reading: siepe on estimands -->
+
+
+<!-- Note! -->
+
+<!-- simhelpers (calc_relative()) defines relative bias as a ratio: the definition is E(T)/θ, estimated by T̄/θ, with MCSE √(S²_T/(Kθ²)). Its own vignette example makes this explicit — for an essentially unbiased estimator it returns rel_bias values of 0.989, 0.993, 1.004, i.e. the no-bias reference is 1. The same ratio convention is used for the variance-estimator version, rB = V̄/S²_T. -->
+
+<!-- Siepe et al. (2024), Table 3, define it as a scaled bias: {E(θ̂) − θ}/θ, estimated by {(Σθ̂ᵢ/n) − θ}/θ, MCSE √(S²/(θ²n)). No bias → 0. This is inherited from Morris et al. (2019, Table A1), so the guidelines literature convention is the centered one. -->
+
+<!-- Note the MCSEs are identical in the two sources. That's the giveaway: the two quantities differ by an additive constant, so variance, MCSE, and n_sim calculations are unaffected, and rel_bias - 1 converts one to the other with the MCSE column left untouched. -->
+
+<!-- Case for the ratio form (simhelpers) -->
+
+<!-- It sits in a family with relative MSE (E[(T−θ)²]/θ²) and relative RMSE, neither of which has a sensible centered version. Within-package consistency: every "relative" criterion is quantity ÷ true value. -->
+<!-- Reads directly as "the estimator recovers 99% of the true value," which is the natural framing for variance/SE estimators where you care about multiplicative attenuation and a benchmark of 1 is meaningful. -->
+<!-- Avoids sign weirdness when θ < 0: T̄/θ > 1 always means overestimation in magnitude, whereas the centered version's sign flips with the sign of θ. -->
+
+<!-- Case for the centered form (Siepe/Morris) -->
+
+<!-- It is bias, just rescaled. Keeping 0 as the reference makes it behave like absolute bias: same interpretation of sign, same reference line in plots, and the two panels of a figure can share a "zero = good" reading. -->
+<!-- ×100 gives percent bias, which is what the existing rules of thumb assume (e.g. Hoogland & Boomsma's |relative bias| < 5%). A threshold of 5% is ambiguous or wrong if applied to a ratio-scaled column. -->
+<!-- Numerically better behaved to report: near-unbiased results are 0.002 rather than 1.002, so rounding doesn't destroy the informative digits, and MCSE-vs-estimate comparisons are visually immediate. -->
+
+<!-- Both share the real problems: undefined at θ = 0 (simhelpers returns NA, as the vignette shows), unstable for small |θ|, and awkward for negative θ. Neither convention is more correct; the choice only matters for labelling and thresholds. -->
+
+<!-- State the formula in the manuscript rather than the name — Siepe et al. flag "not clearly defining performance measures" as a common pitfall, and this is precisely the case where the name is ambiguous. -->
+<!-- If they're subtracting 1 from rel_bias, make sure they haven't also subtracted anything from rel_bias_mcse (unchanged) or touched rel_mse/rel_rmse (not centerable). -->
+<!-- If they also use SimDesign anywhere in the pipeline, check its bias(type = "relative") convention separately rather than assuming it matches either source. -->
+<!-- Minor: the code comment spells it "simhelper" and "Sieppe" — worth fixing before it propagates into the manuscript. -->

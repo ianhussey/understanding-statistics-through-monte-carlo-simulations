@@ -35,15 +35,23 @@ There is also a growing literature on reporting standards, preregistration, and 
 -   Siepe et al. (2024) Simulation studies for methodological research in psychology: A standardized template for planning, preregistration, and reporting. *Psychological Methods*. doi: [10.1037/met0000695](https://doi.org/10.1037/met0000695)
 -   Pawel et al. (2023) Pitfalls and potentials in simulation studies: Questionable research practices in comparative simulation studies allow for spurious claims of superiority of any method. *Biometrical Journal*. doi: [10.1002/bimj.202200091](https://doi.org/10.1002/bimj.202200091)
 
-# License {.unnumbered}
+## License 
 
 &copy; Ian Hussey (2025-2026)
 
-Text and figures are licensed under a [Creative Commons Attribution 4.0 (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) license.
+Text and figures are licensed under a [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)](https://creativecommons.org/licenses/by-nc-nd/4.0/) license. This means you are free to:
 
-Code is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+-   **Share**: copy and redistribute the text and figures in any medium or format, e.g., linking to or distributing chapters to your students.
 
-You are free to copy, share, adapt, and reuse the contents of this book — text, figures, and code — for any purpose, including commercial use, provided you cite its source. See suggested citation below.
+Under the following terms:
+
+-   **Attribution**: you must give appropriate credit (see suggested citation below) and provide a link to the license.
+-   **NonCommercial**: you may not use the text or figures for commercial purposes, i.e., uses primarily intended for commercial advantage or monetary compensation (e.g., selling them, or including them in a paid course or commercial textbook). Using them in teaching at universities and other non-profit educational settings is fine.
+-   **NoDerivatives**: you may not distribute modified versions of the text or figures, e.g., edited, translated, or remixed versions of chapters. You may make changes for your own private use, but not share them.
+
+If you would like to use the text or figures commercially, or to share an adapted version of them, please contact the authors.
+
+Code is licensed under the [MIT License](https://opensource.org/licenses/MIT). This means you are free to use, copy, modify, and distribute the code for any purpose, including commercial use, provided the copyright and license notice are retained.
 
 ## Citation
 

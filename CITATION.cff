@@ -13,7 +13,9 @@ date-released: "2026-04-05"
 doi: "10.5281/zenodo.19420477"
 url: "https://simulations.tidyver.se/"
 repository-code: "https://github.com/ianhussey/understanding-statistics-through-monte-carlo-simulations"
-license: CC-BY-4.0
+license:
+  - CC-BY-NC-ND-4.0
+  - MIT
 keywords:
   - Monte Carlo simulation
   - statistics

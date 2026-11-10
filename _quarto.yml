@@ -5,7 +5,7 @@ project:
     - CNAME
 
 book:
-  title: "Understanding statistics through Monte Carlo simulations"
+  title: "Understanding Statistics Through Monte Carlo Simulations"
   subtitle: "in R and tidyverse"
   author:
     - name: Ian Hussey
@@ -15,6 +15,9 @@ book:
       orcid: 0000-0002-9729-4900
       email: jamie.cummins@unibe.ch
   date: today
+  page-footer:
+    center: |
+      Text and figures: [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/). Code: [MIT](https://opensource.org/licenses/MIT).
   chapters:
     - index.qmd
     - lesson_plan.qmd
@@ -44,6 +47,7 @@ book:
         #- chapters/estimands_and_inappropriate_analyses.qmd # week 12? on how not to analyze RCTs - misalignment errors, ways to mess up inference
         - chapters/16_p_hacking.qmd # week 13? - ways to mess up inference
         - chapters/17_causality_and_selection_effects.qmd
+        - chapters/reliability_misconceptions.qmd
         #- chapters/standardized_effect_sizes_and_range_restriction.qmd
         #- chapters/standardized_effect_sizes_and_range_restriction.qmd
         
